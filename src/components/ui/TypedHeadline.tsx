@@ -8,8 +8,10 @@ interface TypedHeadlineProps {
   startDelay?: number
   /** Intervalo entre letras (ms). */
   charDelay?: number
-  /** Tempo em que a última letra permanece destacada antes de voltar à cor normal (ms). */
+  /** Pausa com o título completo, para leitura (ms). */
   settleDelay?: number
+  /** Duração do fade de saída antes de reescrever (ms). */
+  exitMs?: number
 }
 
 interface WordNode {
@@ -32,53 +34,81 @@ function buildWords(text: string): WordNode[] {
 }
 
 /**
- * Soletração premium do título.
+ * Soletração premium do título — em ciclo contínuo.
  *
- * - cada caractere entra individualmente (opacidade + leve subida);
- * - a letra que está entrando recebe a cor de destaque (#E04A67) e, quando a
- *   próxima aparece, ela volta suavemente para a cor normal;
- * - o espaço do texto completo é reservado desde o início — o layout não se
- *   desloca em nenhum momento;
- * - cada palavra fica em um bloco próprio, então a quebra de linha acontece
- *   só entre palavras (nunca no meio de uma).
+ * Escreve caractere por caractere, mantém o título completo para leitura,
+ * desaparece suavemente e reescreve. Nunca para.
+ *
+ * - a letra que está entrando recebe #E04A67 e volta suave à cor normal;
+ * - o espaço do texto completo é reservado desde o início (sem deslocar layout);
+ * - cada palavra fica em um bloco próprio (a quebra só acontece entre palavras).
  */
 export function TypedHeadline({
   text,
   className,
   startDelay = 300,
   charDelay = 55,
-  settleDelay = 900,
+  settleDelay = 2000,
+  exitMs = 380,
 }: TypedHeadlineProps) {
   const words = buildWords(text)
   const totalChars = Array.from(text).length
   const [count, setCount] = useState(0)
   const [active, setActive] = useState(-1)
-  const timerRef = useRef<number | undefined>(undefined)
+  const [exiting, setExiting] = useState(false)
+  const timers = useRef<number[]>([])
 
   useEffect(() => {
-    window.clearTimeout(timerRef.current)
-    setCount(0)
-    setActive(-1)
+    const clearAll = () => {
+      timers.current.forEach((id) => window.clearTimeout(id))
+      timers.current = []
+    }
+    const schedule = (fn: () => void, ms: number) => {
+      timers.current.push(window.setTimeout(fn, ms))
+    }
 
+    clearAll()
     let index = 0
-    const tick = () => {
+
+    const typeNext = () => {
       index += 1
       setCount(index)
       setActive(index - 1)
 
       if (index < totalChars) {
-        timerRef.current = window.setTimeout(tick, charDelay)
+        schedule(typeNext, charDelay)
       } else {
-        timerRef.current = window.setTimeout(() => setActive(-1), settleDelay)
+        // Terminou: mantém para leitura, desaparece e recomeça.
+        schedule(() => {
+          setActive(-1)
+          setExiting(true)
+          schedule(restart, exitMs)
+        }, settleDelay)
       }
     }
 
-    timerRef.current = window.setTimeout(tick, startDelay)
-    return () => window.clearTimeout(timerRef.current)
-  }, [text, charDelay, startDelay, settleDelay, totalChars])
+    const restart = () => {
+      index = 0
+      setExiting(false)
+      setCount(0)
+      setActive(-1)
+      schedule(typeNext, startDelay)
+    }
+
+    schedule(typeNext, startDelay)
+    return clearAll
+  }, [text, charDelay, startDelay, settleDelay, exitMs, totalChars])
 
   return (
-    <h1 className={cn('whitespace-pre-wrap', className)} aria-label={text}>
+    <h1
+      className={cn('whitespace-pre-wrap', className)}
+      aria-label={text}
+      style={{
+        opacity: exiting ? 0 : 1,
+        transform: exiting ? 'translateY(-6px)' : 'none',
+        transition: 'opacity 380ms ease, transform 380ms cubic-bezier(0.22, 1, 0.36, 1)',
+      }}
+    >
       <span aria-hidden="true">
         {words.map((word) => (
           <Fragment key={word.wordStart}>
@@ -95,8 +125,11 @@ export function TypedHeadline({
                     style={{
                       opacity: revealed ? 1 : 0,
                       transform: revealed ? 'translateY(0)' : 'translateY(0.24em)',
-                      transition:
-                        'opacity 300ms ease-out, transform 340ms cubic-bezier(0.22, 1, 0.36, 1), color 300ms ease-out',
+                      // A letra ativa acende na hora (#E04A67); as anteriores
+                      // voltam suavemente para a cor normal.
+                      transition: isActive
+                        ? 'color 0ms, opacity 300ms ease-out, transform 340ms cubic-bezier(0.22, 1, 0.36, 1)'
+                        : 'color 320ms ease-out, opacity 300ms ease-out, transform 340ms cubic-bezier(0.22, 1, 0.36, 1)',
                     }}
                   >
                     {char}

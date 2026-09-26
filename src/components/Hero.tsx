@@ -11,7 +11,8 @@ import { TypedHeadline } from './ui/TypedHeadline'
 const TITLE_TYPING = {
   startDelay: 300,
   charDelay: 55,
-  settleDelay: 900,
+  settleDelay: 2000,
+  exitMs: 380,
 }
 
 export function Hero() {
@@ -45,6 +46,7 @@ export function Hero() {
               startDelay={TITLE_TYPING.startDelay}
               charDelay={TITLE_TYPING.charDelay}
               settleDelay={TITLE_TYPING.settleDelay}
+              exitMs={TITLE_TYPING.exitMs}
             />
 
             <p
