@@ -72,7 +72,8 @@
       slug: 'paradas-de-manutencao',
       title: 'Paradas de Manutenção',
       icon: 'clock',
-      image: 'assets/img/services/servico-04.svg',
+      image: 'assets/img/services/servico-04.jpg',
+      imageAlt: 'Equipe executando manutenção industrial em equipamento de grande porte.',
       short: 'Planejamento e execução de serviços durante paradas industriais.',
       scope:
         'Planejamento e execução de serviços durante paradas industriais, mobilizando equipes e recursos para cumprir a janela de parada com segurança e controle.',
@@ -123,7 +124,8 @@
       slug: 'vulcanizacao-de-correias',
       title: 'Vulcanização de Correias',
       icon: 'belt',
-      image: 'assets/img/services/servico-07.svg',
+      image: 'assets/img/services/servico-07.jpg',
+      imageAlt: 'Correia transportadora de material a granel em operação.',
       short: 'Vulcanização a frio e a quente de correias transportadoras.',
       scope:
         'Vulcanização a frio e a quente de correias transportadoras, apoiando a operação de sistemas de transporte de minério, grãos e materiais a granel.',
@@ -139,7 +141,8 @@
       slug: 'andaimes',
       title: 'Andaimes',
       icon: 'scaffold',
-      image: 'assets/img/services/servico-08.svg',
+      image: 'assets/img/services/servico-08.jpg',
+      imageAlt: 'Estrutura de andaime montada para trabalho em altura.',
       short: 'Montagem e desmontagem de andaimes para operações e obras industriais.',
       scope:
         'Montagem e desmontagem de andaimes para operações e obras industriais, com dimensionamento de estrutura e organização das frentes de trabalho.',
@@ -154,7 +157,8 @@
       slug: 'planejamento-controle-obras',
       title: 'Planejamento e Controle de Obras',
       icon: 'chart',
-      image: 'assets/img/services/servico-09.svg',
+      image: 'assets/img/services/servico-09.jpg',
+      imageAlt: 'Desenhos técnicos e cronograma sobre mesa de planejamento.',
       short: 'Cronogramas, medições, RDO, databook e as-built.',
       scope:
         'Cronogramas, medições, RDO, databook e as-built — a estrutura de engenharia que acompanha a execução e dá visibilidade ao cliente sobre prazos, custos e escopo realizado.',

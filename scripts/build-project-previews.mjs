@@ -118,7 +118,6 @@ function replaceInTree(dir, replacements) {
     if (changed) writeFileSync(full, content, 'utf8')
   }
 }
-
 function patchOrvixPreview(destDir) {
   const assetsDir = path.join(destDir, 'assets')
   mkdirSync(assetsDir, { recursive: true })
@@ -129,6 +128,78 @@ function patchOrvixPreview(destDir) {
   }
 
   replaceInTree(destDir, ORVIX_REPLACEMENTS)
+}
+
+/**
+ * Ajustes exclusivos do preview da MHR.
+ *
+ * Completa as áreas que ainda usavam placeholders (SVG ilustrativos) com fotos
+ * reais — SOMENTE na cópia usada pelo portfólio. O projeto do cliente não é
+ * alterado, e a estrutura, os textos e o layout do site permanecem iguais.
+ */
+const MHR_ASSETS_DIR = path.join(__dirname, 'mhr-assets')
+
+const MHR_FOLDERS = [
+  { match: /^servico-/, folder: 'assets/img/services' },
+  { match: /^segmento-/, folder: 'assets/img/segments' },
+  { match: /^(empresa|engenharia|qualidade|seguranca|cta-bg)/, folder: 'assets/img/media' },
+]
+
+const MHR_PATH_SWAPS = [
+  ['assets/img/services/servico-04.svg', 'assets/img/services/servico-04.jpg'],
+  ['assets/img/services/servico-07.svg', 'assets/img/services/servico-07.jpg'],
+  ['assets/img/services/servico-08.svg', 'assets/img/services/servico-08.jpg'],
+  ['assets/img/services/servico-09.svg', 'assets/img/services/servico-09.jpg'],
+  ['assets/img/segments/segmento-01.svg', 'assets/img/segments/segmento-01.jpg'],
+  ['assets/img/segments/segmento-02.svg', 'assets/img/segments/segmento-02.jpg'],
+  ['assets/img/segments/segmento-03.svg', 'assets/img/segments/segmento-03.jpg'],
+  ['assets/img/segments/segmento-04.svg', 'assets/img/segments/segmento-04.jpg'],
+  ['assets/img/media/empresa-01.svg', 'assets/img/media/empresa-01.jpg'],
+  ['assets/img/media/empresa-02.svg', 'assets/img/media/empresa-02.jpg'],
+  ['assets/img/media/engenharia-01.svg', 'assets/img/media/engenharia-01.jpg'],
+  ['assets/img/media/qualidade-01.svg', 'assets/img/media/qualidade-01.jpg'],
+  ['assets/img/media/seguranca-01.svg', 'assets/img/media/seguranca-01.jpg'],
+  ['assets/img/media/cta-bg.svg', 'assets/img/media/cta-bg.jpg'],
+].map(([from, to]) => ({ from, to }))
+
+const MHR_ALTS = [
+  { rel: 'assets/img/services/servico-04.jpg', alt: 'Equipe executando manutenção industrial em equipamento de grande porte.' },
+  { rel: 'assets/img/services/servico-07.jpg', alt: 'Correia transportadora de material a granel em operação.' },
+  { rel: 'assets/img/services/servico-08.jpg', alt: 'Estrutura de andaime montada para trabalho em altura.' },
+  { rel: 'assets/img/services/servico-09.jpg', alt: 'Desenhos técnicos e cronograma sobre mesa de planejamento.' },
+  { rel: 'assets/img/segments/segmento-01.jpg', alt: 'Frente de lavra em mina a céu aberto com caminhão fora de estrada.' },
+  { rel: 'assets/img/segments/segmento-02.jpg', alt: 'Silos de armazenagem de grãos em unidade de recebimento.' },
+  { rel: 'assets/img/segments/segmento-03.jpg', alt: 'Trabalhador na colheita de café, entre ramos carregados de grãos.' },
+  { rel: 'assets/img/segments/segmento-04.jpg', alt: 'Interior de galpão industrial com estrutura metálica e equipamentos.' },
+]
+
+function patchMhrPreview(destDir) {
+  // 1) copia as fotos para as pastas correspondentes do preview
+  for (const file of readdirSync(MHR_ASSETS_DIR)) {
+    if (!/\.jpe?g$/i.test(file)) continue
+    const folder = MHR_FOLDERS.find((entry) => entry.match.test(file))?.folder
+    if (!folder) continue
+    const dest = path.join(destDir, folder)
+    mkdirSync(dest, { recursive: true })
+    copyFileSync(path.join(MHR_ASSETS_DIR, file), path.join(dest, file))
+  }
+
+  // 2) troca as referências placeholder (.svg) pelas fotos (.jpg)
+  replaceInTree(destDir, MHR_PATH_SWAPS)
+
+  // 3) adiciona o imageAlt onde o dado ainda não tem (metadado de acessibilidade)
+  for (const dataFile of ['assets/js/data/services.js', 'assets/js/data/segments.js']) {
+    const full = path.join(destDir, dataFile)
+    if (!existsSync(full)) continue
+    let content = readFileSync(full, 'utf8')
+    for (const { rel, alt } of MHR_ALTS) {
+      const from = `image: '${rel}',`
+      if (content.includes(from) && !content.includes(alt)) {
+        content = content.replace(from, `${from}\n      imageAlt: '${alt}',`)
+      }
+    }
+    writeFileSync(full, content, 'utf8')
+  }
 }
 
 function copyTree(src, dest) {
@@ -206,6 +277,10 @@ function main() {
     try {
       if (project.mode === 'static') {
         copyStaticProject(clientDir, destDir)
+        if (project.id === 'mhr') {
+          patchMhrPreview(destDir)
+          console.log('[ok] imagens da MHR completadas (preview)')
+        }
         summary.push({ id: project.id, ok: true })
         console.log(`[ok] copiado (estático) -> ${destDir}`)
       } else {
