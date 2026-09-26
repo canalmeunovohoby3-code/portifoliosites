@@ -386,3 +386,44 @@
     height: 170px;
   }
 }
+
+/* ============================================================
+   Como funciona — sequência dos passos (01 → 04)
+   ============================================================ */
+
+.process-number {
+  display: inline-block;
+  animation: process-pop 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.process-ring {
+  position: absolute;
+  inset: -1px;
+  border-radius: 1rem;
+  border: 1px solid #e04a67;
+  pointer-events: none;
+  animation: process-ring 900ms ease-out both;
+}
+
+@keyframes process-pop {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.24);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes process-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1.42);
+    opacity: 0;
+  }
+}
