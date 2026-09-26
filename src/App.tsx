@@ -10,6 +10,7 @@ import { Hero } from './components/Hero'
 import { ProcessSection } from './components/ProcessSection'
 import { ProjectPreview } from './components/ProjectPreview'
 import { Projects } from './components/Projects'
+import { ShowcaseRail } from './components/ShowcaseRail'
 import { WhatsAppFloat } from './components/WhatsAppFloat'
 import { useReveal } from './hooks/useReveal'
 import { track } from './lib/analytics'
@@ -35,6 +36,7 @@ export default function App() {
 
       <main>
         <Hero />
+        <ShowcaseRail />
         <Projects onOpen={openProject} />
         <ProcessSection />
         <DifferentialsSection />
