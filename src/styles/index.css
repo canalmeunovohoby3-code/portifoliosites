@@ -402,3 +402,227 @@
     opacity: 0;
   }
 }
+
+/* ============================================================
+   Diferenciais — microvisuais (um por conceito)
+   ============================================================ */
+
+.vis {
+  position: relative;
+  width: 100%;
+  height: 240px;
+}
+
+/* 01 — blocos de layout se reorganizando */
+.vis--design {
+  border-left: 1px solid rgba(26, 26, 26, 0.1);
+  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+.dg {
+  position: absolute;
+  border-radius: 3px;
+  border: 1px solid rgba(26, 26, 26, 0.16);
+  background: rgba(26, 26, 26, 0.035);
+}
+
+.dg1 {
+  left: 6%;
+  top: 6%;
+  width: 46%;
+  height: 30%;
+  animation: dg-a 7.5s ease-in-out infinite;
+}
+
+.dg2 {
+  right: 4%;
+  top: 0;
+  width: 42%;
+  height: 48%;
+  animation: dg-b 7.5s ease-in-out infinite;
+}
+
+.dg3 {
+  left: 0;
+  bottom: 4%;
+  width: 34%;
+  height: 44%;
+  animation: dg-c 7.5s ease-in-out infinite;
+}
+
+.dg4 {
+  right: 10%;
+  bottom: 8%;
+  width: 44%;
+  height: 26%;
+  border-color: rgba(224, 74, 103, 0.5);
+  background: rgba(224, 74, 103, 0.06);
+  animation: dg-d 7.5s ease-in-out infinite;
+}
+
+@keyframes dg-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10%, 8%) scale(1.05); }
+}
+@keyframes dg-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8%, 10%) scale(0.94); }
+}
+@keyframes dg-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(12%, -6%) scale(1.06); }
+}
+@keyframes dg-d {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-10%, -8%) scale(1.03); }
+}
+
+/* 02 — a interface adaptando a largura */
+.vis--responsive {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rw {
+  width: 100%;
+  max-width: 460px;
+  padding: 12px;
+  border: 1px solid rgba(26, 26, 26, 0.16);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 24px 50px -34px rgba(26, 26, 26, 0.55);
+  animation: rw-w 7.5s ease-in-out infinite;
+}
+
+.rw__bar {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(26, 26, 26, 0.12);
+  margin-bottom: 10px;
+}
+
+.rw__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rw__b {
+  flex: 1 1 30%;
+  min-width: 44px;
+  height: 58px;
+  border-radius: 4px;
+  border: 1px solid rgba(224, 74, 103, 0.3);
+  background: rgba(224, 74, 103, 0.12);
+}
+
+@keyframes rw-w {
+  0%, 22% { width: 100%; }
+  46%, 70% { width: 38%; }
+  94%, 100% { width: 100%; }
+}
+
+/* 03 — estrutura/hierarquia (sitemap) */
+.vis--structure {
+  width: 100%;
+  height: 240px;
+}
+
+.st-line {
+  stroke: rgba(26, 26, 26, 0.28);
+  stroke-width: 1.5;
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: st-draw 7.5s ease-in-out infinite;
+}
+
+.st-l2 { animation-delay: 0.2s; }
+.st-l3 { animation-delay: 0.4s; }
+
+@keyframes st-draw {
+  0% { stroke-dashoffset: 420; }
+  30%, 74% { stroke-dashoffset: 0; }
+  92%, 100% { stroke-dashoffset: 420; }
+}
+
+.st-node {
+  fill: #fff;
+  stroke: rgba(26, 26, 26, 0.35);
+  stroke-width: 1.5;
+  animation: st-node 7.5s ease-in-out infinite;
+}
+
+.st-node.accent { stroke: #e04a67; }
+.st-n1, .st-n2, .st-n3 { animation-delay: 0.6s; }
+
+@keyframes st-node {
+  0%, 20% { opacity: 0.25; }
+  36%, 74% { opacity: 1; }
+  92%, 100% { opacity: 0.25; }
+}
+
+/* 04 — caminho até a conversão */
+.vis--focus {
+  display: flex;
+  align-items: center;
+  height: 200px;
+}
+
+.fc-track {
+  position: absolute;
+  left: 0;
+  right: 74px;
+  top: 50%;
+  height: 1px;
+  background: rgba(26, 26, 26, 0.16);
+}
+
+.fc-cursor {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #e04a67;
+  animation: fc-travel 7.5s ease-in-out infinite;
+}
+
+.fc-cta {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  animation: fc-pulse 7.5s ease-in-out infinite;
+}
+
+@keyframes fc-travel {
+  0% { left: 0; opacity: 0; }
+  10% { opacity: 1; }
+  40%, 100% { left: calc(100% - 86px); }
+}
+
+@keyframes fc-pulse {
+  0%, 40% { box-shadow: 0 0 0 0 rgba(224, 74, 103, 0); }
+  50% { box-shadow: 0 0 0 9px rgba(224, 74, 103, 0.16); }
+  62%, 100% { box-shadow: 0 0 0 0 rgba(224, 74, 103, 0); }
+}
+
+@media (max-width: 640px) {
+  .vis {
+    height: 200px;
+  }
+  .vis--structure {
+    height: 200px;
+  }
+}
