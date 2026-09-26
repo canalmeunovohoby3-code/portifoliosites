@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Eliarte e Papel">
+  <rect width="64" height="64" rx="9" fill="#7C3227" />
+  <path d="M21 17h22v5.4H27.2v7.1h11.4v5.3H27.2v7.2h16v5.4H21z" fill="#FDFAF7" />
+  <circle cx="48.5" cy="43.5" r="4.2" fill="#FB658A" />
+</svg>

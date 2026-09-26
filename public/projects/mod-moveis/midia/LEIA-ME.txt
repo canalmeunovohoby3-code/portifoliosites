@@ -1,0 +1,156 @@
+==========================================================
+M O D — GUIA DE MÍDIA E CONTEÚDO
+==========================================================
+
+Este site foi construído para receber as fotografias, os vídeos e os
+depoimentos REAIS da empresa. Enquanto eles não chegam, cada imagem
+vazia é um placeholder elegante, gerado por código e identificado pela
+etiqueta "imagem a substituir".
+
+Nenhuma imagem, vídeo, projeto, cliente, preço ou número foi inventado.
+Nenhum material de banco de imagens é apresentado como trabalho da M O D.
+
+----------------------------------------------------------
+1. ESTRUTURA DE PASTAS
+----------------------------------------------------------
+
+public/
+  midia/
+    projetos/          -> fotos da galeria (uma pasta por projeto)
+    videos/            -> arquivos de vídeo
+    fabrica/           -> fotos da equipe, fábrica e estrutura
+    depoimentos/       -> fotos dos clientes (opcional, uso futuro)
+
+Formatos aceitos: JPG, PNG, WEBP e SVG quando aplicável
+(logotipos, ícones e desenhos técnicos).
+
+----------------------------------------------------------
+2. COMO SUBSTITUIR UMA IMAGEM
+----------------------------------------------------------
+
+1) Coloque o arquivo na pasta correspondente.
+2) Abra o arquivo de dados indicado abaixo.
+3) Troque `src: null` pelo caminho público do arquivo.
+   Exemplo: `src: './midia/projetos/cozinha-01/capa.webp'`
+   Se houver versão WEBP, informe também em `webp` — o navegador
+   escolhe o melhor formato e o `src` fica como fallback.
+4) Atualize o texto `alt` com a descrição real da imagem.
+5) Substitua título, resumo, descrição e local pelos dados reais.
+
+Arquivos de dados (todo o conteúdo vive em src/data/):
+  projetos   -> src/data/works.ts       (galeria, sem categorias)
+  vídeos     -> src/data/videos.ts      (dois vídeos lado a lado)
+  depoimentos-> src/data/testimonials.ts
+  serviços   -> src/data/services.ts    (imagens dos serviços)
+  sobre      -> src/data/about.ts       (equipe/fábrica)
+  hero       -> src/data/hero.ts        (imagem ou vídeo de abertura)
+
+----------------------------------------------------------
+3. GALERIA (sem categorias)
+----------------------------------------------------------
+
+A galeria é única e editorial: não há filtros. A variedade visual vem
+da proporção de cada foto. Em works.ts, o campo `proporcao` aceita:
+
+  retrato (4/5) · vertical (3/4) · quadrado (1/1)
+  paisagem (4/3) · panorama (16/9) · largo (21/9)
+
+Misture proporções diferentes para manter o ritmo do masonry.
+
+As nove fotos atuais estão em public/midia/projetos/ (projeto1, 2, 4, 5, 6,
+7, 8, 9 e 10 — não existe projeto3). Elas foram reencodadas para reduzir o
+peso; os ARQUIVOS ORIGINAIS ficaram guardados em _originais-midia/projetos/,
+fora do site.
+
+A proporção de cada card foi escolhida conforme o enquadramento da foto,
+para não cortar o ambiente:
+  projeto10 → panorama (16/9)     projeto1 → vertical (3/4)
+  projeto6  → paisagem (4/3)      projeto5 → quadrado (1/1)
+  projeto2  → paisagem (4/3)      projeto9 → vertical (3/4)
+  projeto8  → paisagem (4/3)      projeto4 → quadrado (1/1)
+  projeto7  → paisagem (4/3)
+
+----------------------------------------------------------
+4. VÍDEOS
+----------------------------------------------------------
+
+A seção mostra DOIS vídeos lado a lado. Para publicar:
+  - arquivo próprio:  coloque em public/midia/videos/ e preencha mp4/webm
+  - provedor externo: preencha `externo` com a URL de incorporação
+  - preencha `poster` com um quadro real do vídeo (a thumbnail)
+Ao clicar, o vídeo real assume o lugar da thumbnail.
+
+----------------------------------------------------------
+5. DEPOIMENTOS
+----------------------------------------------------------
+
+Os textos atuais são PLACEHOLDERS DE DEMONSTRAÇÃO — não descrevem
+clientes reais e não citam empresas, marcas, cargos ou resultados.
+Substitua `texto` e `autor` em src/data/testimonials.ts pelos
+depoimentos reais, com autorização de quem os deu. É possível
+adicionar ou remover itens: o carrossel se ajusta à quantidade.
+
+Enquanto forem de demonstração, a seção exibe um aviso discreto
+(`depoimentosIntro.aviso`). Ao publicar os reais, esvazie o aviso.
+
+----------------------------------------------------------
+6. RECOMENDAÇÕES TÉCNICAS
+----------------------------------------------------------
+
+- Tamanho: exporte na maior dimensão que o layout usa.
+  Capas grandes: ~2000px no lado maior, WebP qualidade 80–90.
+  ATENÇÃO: a foto de abertura atual (public/foto-hero.jpg) tem apenas
+  739x415 px e fica suavizada em telas grandes. Se possível, envie uma
+  versão com ~2000 px de largura (mesmo enquadramento) para substituí-la.
+- Vídeos: prefira MP4 (H.264) e, se possível, WebM ao lado.
+
+----------------------------------------------------------
+6.1 MAPA NA SEÇÃO CONTATO
+----------------------------------------------------------
+
+O mapa usa a incorporação pública do Google Maps (não exige chave):
+
+  https://www.google.com/maps?q=<consulta>&z=10&output=embed
+
+A consulta está em src/sections/FinalCta.tsx. Hoje ela aponta para
+"Rio de Janeiro, RJ, Brasil" (área de atendimento). Quando o cliente
+informar o endereço do showroom, troque a consulta por ele, por exemplo:
+
+  q=Rua%20Exemplo%2C%20123%20-%20Bairro%2C%20Rio%20de%20Janeiro%20-%20RJ
+- Vídeo de fundo do hero: curto (6 a 12s), sem áudio,
+  preferencialmente abaixo de 4 MB.
+
+----------------------------------------------------------
+6.2 SEÇÃO SOBRE
+----------------------------------------------------------
+
+A seção "Sobre" usa duas fotos, e os nomes indicam o espaço:
+
+  sobre-maior.jpg  -> imagem grande (proporção 3/2)
+  sobre-menor.jpg  -> imagem menor sobreposta, em recorte de detalhe (4/3)
+
+No momento os dois arquivos são a MESMA foto (idênticos). Quando o cliente
+enviar uma foto diferente para a imagem menor, basta substituir o arquivo
+mantendo o nome.
+
+----------------------------------------------------------
+7. TEXTOS QUE DEPENDEM DE CONFIRMAÇÃO DO CLIENTE
+----------------------------------------------------------
+
+Em src/data/site.ts existem dois campos comerciais que só
+aparecem no site quando forem confirmados:
+
+  garantia.confirmado  (garantia de 5 anos)
+  prazo.confirmado     (prazo de 15 a 30 dias úteis)
+
+Enquanto estiverem como `false`, o rodapé omite essas frases.
+Depois da confirmação por escrito, basta mudar para `true`.
+
+----------------------------------------------------------
+8. CONTATOS (já configurados)
+----------------------------------------------------------
+
+WhatsApp:  (21) 99253-9702  ->  https://wa.me/5521992539702
+Instagram: @amepmoveis_planejados
+Atuação:   Rio de Janeiro, Niterói e Baixada Fluminense
+Domínio:   ajuste em src/data/site.ts (`dominio`) e no index.html

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Eliarte e Papel — Papelaria personalizada em Salvador, BA">
+  <rect width="1200" height="630" fill="#FDFAF7" />
+
+  <circle cx="1010" cy="120" r="300" fill="#FB658A" opacity="0.14" />
+  <circle cx="180" cy="560" r="240" fill="#7C3227" opacity="0.07" />
+
+  <rect x="48" y="48" width="1104" height="534" fill="none" stroke="#7C3227" stroke-opacity="0.24" />
+
+  <line x1="140" y1="196" x2="220" y2="196" stroke="#FB658A" stroke-width="2" />
+  <text x="240" y="203" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="19" font-weight="600" letter-spacing="5" fill="#7C3227">
+    PAPELARIA PERSONALIZADA
+  </text>
+
+  <text x="136" y="326" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="86" font-weight="500" letter-spacing="-2" fill="#2B1A16">
+    Eliarte <tspan font-style="italic" font-weight="400" fill="#E3416A">&amp;</tspan> Papel
+  </text>
+
+  <text x="140" y="400" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="33" font-weight="400" fill="#5C453E">
+    Detalhes que transformam momentos em memórias.
+  </text>
+
+  <line x1="140" y1="470" x2="1060" y2="470" stroke="#7C3227" stroke-opacity="0.2" />
+
+  <text x="140" y="524" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="600" letter-spacing="3" fill="#A35A4A">
+    TOPOS DE BOLO · PERSONALIZADOS · LEMBRANCINHAS · DETALHES PARA FESTAS
+  </text>
+
+  <text x="1060" y="524" text-anchor="end" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="21" font-weight="600" letter-spacing="3" fill="#7C3227">
+    SALVADOR — BA
+  </text>
+</svg>

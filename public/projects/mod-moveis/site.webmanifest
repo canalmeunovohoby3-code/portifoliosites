@@ -1,0 +1,17 @@
+{
+  "name": "M O D Móveis Planejados & Decoração",
+  "short_name": "M O D",
+  "description": "Móveis planejados sob medida no Rio de Janeiro e região metropolitana.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2D1717",
+  "theme_color": "#2D1717",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

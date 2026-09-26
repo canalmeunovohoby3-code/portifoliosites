@@ -1,0 +1,43 @@
+Imagens e vídeos do site
+========================
+
+Pasta public/images. Os caminhos ficam nos arquivos de src/data/.
+
+EM USO
+  logo.png                  Logo (navbar e rodapé)
+  foto-principal.jpeg       Hero — primeira dobra
+  VIDEO 2.mp4               Seção "A empresa" (vídeo em loop, sem som)
+  antes-01.jpeg             Antes e Depois — ANTES
+  depois-02.jpeg            Antes e Depois — DEPOIS
+  PROJETO 1.jpeg            Galeria de Projetos
+  PROJETO 2.jpeg
+  PROJETO 3.jpeg
+  PROJETO 4.jpeg
+  PROJETO 5.jpeg
+  PROJETO 6.jpeg
+  PROJETO 7.jpeg
+  PROJETO 8.jpeg
+  PROJETO 9.jpeg
+  PROJETO 10.jpeg
+  PROJETO 11.jpeg
+  PROJETO 12.jpeg
+
+  public/VIDEO.mp4          Seção Serviços (vídeo em loop, sem som)
+
+AINDA PENDENTES (o site mostra um marcador enquanto o arquivo não existe)
+  servico-usinagem.jpg, servico-soldas.jpg, servico-fabricacao.jpg,
+  servico-montagem.jpg, servico-mandrilhamento.jpg, servico-mecanica.jpg
+  (essas fotos não aparecem no site hoje, o card da direita mostra o vídeo)
+
+Observações
+- Cada foto da galeria tem a proporção configurada no arquivo de dados
+  (campo "ratio"). Se trocar por uma foto de outro formato, ajuste o "ratio"
+  para ela não ser cortada.
+- No ANTES E DEPOIS as duas fotos são exibidas por inteiro (sem corte), com
+  fundo desfocado preenchendo o quadro. Se as fotos ANTES e DEPOIS tiverem o
+  mesmo enquadramento e a mesma proporção, avise que eu ativo o modo de
+  preenchimento total (mais impactante).
+- Recomendado: JPG, lado maior entre 1600px e 2200px, até ~500 KB por arquivo.
+- Nomes com espaço (ex.: "PROJETO 1.jpeg" e "VIDEO 2.mp4") funcionam normalmente.
+- Existe uma cópia de vídeo em images/VIDEO.mp4 que não está sendo usada;
+  o site usa o VIDEO.mp4 da raiz de public.

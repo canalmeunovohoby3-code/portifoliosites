@@ -1,0 +1,17 @@
+{
+  "name": "Criação de Sites Profissionais",
+  "short_name": "Criação de Sites",
+  "description": "Sites profissionais, modernos e personalizados para empresas, profissionais e negócios.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

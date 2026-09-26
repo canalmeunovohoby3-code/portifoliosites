@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-paper text-ink-800 font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Evita scroll do fundo quando o preview esta aberto */
+  body[data-scroll-locked='true'] {
+    overflow: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-ink-900;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-accent-200 text-ink-900;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent-500 ring-offset-2 ring-offset-paper;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8;
+  }
+
+  .shell-wide {
+    @apply mx-auto w-full max-w-wide px-5 sm:px-8;
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Variação discreta, para elementos secundários */
+  .reveal-soft {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal-soft.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Barra de titulo de secao com detalhe rosa */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-accent-600;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply inline-block h-[2px] w-6 rounded-full bg-accent-500;
+  }
+
+  .eyebrow--bare::before {
+    @apply hidden;
+  }
+
+  /* Moldura de navegador usada no hero e no preview */
+  .browser-frame {
+    @apply overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-frame;
+  }
+
+  .browser-bar {
+    @apply flex items-center gap-3 border-b border-ink-100 bg-paper-muted/90 px-4 py-3;
+  }
+
+  .browser-dots {
+    @apply flex items-center gap-1.5;
+  }
+
+  .browser-dot {
+    @apply h-2.5 w-2.5 rounded-full;
+  }
+
+  .browser-url {
+    @apply flex min-w-0 flex-1 items-center gap-2 rounded-full border border-ink-100 bg-white px-3 py-1.5 text-xs text-ink-400;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .grain {
+    background-image: radial-gradient(rgba(26, 26, 26, 0.045) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  /* Imagem longa de fallback dentro do preview (scroll vertical) */
+  .preview-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(26, 26, 26, 0.28) transparent;
+  }
+
+  .preview-scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .preview-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(26, 26, 26, 0.22);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+}

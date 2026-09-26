@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-label="ESTRUTURA — imagem provisória">
+  <defs>
+    <pattern id="g1" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0V56" fill="none" stroke="rgba(255,255,255,0.055)" stroke-width="1"/>
+    </pattern>
+    <pattern id="g2" width="280" height="280" patternUnits="userSpaceOnUse">
+      <rect width="280" height="280" fill="url(#g1)"/>
+      <path d="M280 0H0V280" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#3a424c"/>
+      <stop offset="1" stop-color="#20252c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.78" cy="0.72" r="0.7">
+      <stop offset="0" stop-color="#F48009" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#F48009" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" fill="url(#glow)"/>
+  <rect width="1200" height="1200" fill="url(#g2)"/>
+  <g stroke="#F48009" stroke-opacity="0.13" fill="none" stroke-width="1.6">
+    <circle cx="888" cy="792" r="480"/>
+    <circle cx="888" cy="792" r="278.4"/>
+    <circle cx="1262.4" cy="792.0" r="36.0"/><circle cx="1212.2" cy="979.2" r="36.0"/><circle cx="1075.2" cy="1116.2" r="36.0"/><circle cx="888.0" cy="1166.4" r="36.0"/><circle cx="700.8" cy="1116.2" r="36.0"/><circle cx="563.8" cy="979.2" r="36.0"/><circle cx="513.6" cy="792.0" r="36.0"/><circle cx="563.8" cy="604.8" r="36.0"/><circle cx="700.8" cy="467.8" r="36.0"/><circle cx="888.0" cy="417.6" r="36.0"/><circle cx="1075.2" cy="467.8" r="36.0"/><circle cx="1212.2" cy="604.8" r="36.0"/>
+  </g>
+  <rect x="0" y="1146.0" width="1200" height="3.6" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1158.0" width="1200" height="3.6" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1170.0" width="1200" height="3.6" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1182.0" width="1200" height="3.6" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1194.0" width="1200" height="3.6" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1206.0" width="1200" height="3.6" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1218.0" width="1200" height="3.6" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1230.0" width="1200" height="3.6" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1242.0" width="1200" height="3.6" fill="#F48009" fill-opacity="0.1"/>
+  <rect x="72" y="72" width="31" height="4" fill="#F48009" fill-opacity="0.5"/>
+  
+  <g transform="translate(600, 600)" text-anchor="middle" opacity="0.42">
+    <rect x="-19" y="-242" width="38" height="4" fill="#F48009"/>
+    <text y="-138" fill="#F48009" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" letter-spacing="5.3">IMAGEM PROVISÓRIA</text>
+    <text y="0" fill="#FFFFFF" fill-opacity="0.72" font-family="Arial, Helvetica, sans-serif" font-size="55" font-weight="700" letter-spacing="1.1">ESTRUTURA</text>
+    <text y="63" fill="#FFFFFF" fill-opacity="0.5" font-family="Arial, Helvetica, sans-serif" font-size="37">Detalhe técnico</text>
+    <text y="133" fill="#F48009" fill-opacity="0.85" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" letter-spacing="3.4">SUBSTITUIR POR FOTO REAL</text>
+  </g>
+  <g stroke="rgba(255,255,255,0.16)" stroke-width="1" fill="none">
+    <path d="M72 600 h16 M600 72 v16"/>
+    <path d="M1128 600 h-16 M600 1128 v-16"/>
+  </g>
+</svg>

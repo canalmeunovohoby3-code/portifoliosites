@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 720" width="1920" height="720" role="img" aria-label="FUNDO TÉCNICO — imagem provisória">
+  <defs>
+    <pattern id="g1" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0V56" fill="none" stroke="rgba(255,255,255,0.055)" stroke-width="1"/>
+    </pattern>
+    <pattern id="g2" width="280" height="280" patternUnits="userSpaceOnUse">
+      <rect width="280" height="280" fill="url(#g1)"/>
+      <path d="M280 0H0V280" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#3a424c"/>
+      <stop offset="1" stop-color="#20252c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.78" cy="0.72" r="0.7">
+      <stop offset="0" stop-color="#F48009" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#F48009" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="720" fill="url(#bg)"/>
+  <rect width="1920" height="720" fill="url(#glow)"/>
+  <rect width="1920" height="720" fill="url(#g2)"/>
+  <g stroke="#F48009" stroke-opacity="0.12" fill="none" stroke-width="1.6">
+    <path d="M960 28.80000000000001 L1291.2 194.4 L960 360 L628.8 194.4 Z"/>
+    <path d="M628.8 194.4 V525.6 L960 691.2 L1291.2 525.6 V194.4"/>
+    <path d="M960 360 V691.2"/>
+  </g>
+  <rect x="0" y="688.0" width="1920" height="2.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="695.1" width="1920" height="2.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="702.2" width="1920" height="2.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="709.3" width="1920" height="2.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="716.4" width="1920" height="2.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="723.6" width="1920" height="2.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="730.7" width="1920" height="2.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="737.8" width="1920" height="2.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="744.9" width="1920" height="2.1" fill="#F48009" fill-opacity="0.1"/>
+  <rect x="43" y="43" width="19" height="4" fill="#F48009" fill-opacity="0.5"/>
+  
+  <g transform="translate(960, 360)" text-anchor="middle" opacity="0.42">
+    <rect x="-12" y="-145" width="23" height="4" fill="#F48009"/>
+    <text y="-83" fill="#F48009" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="3.1">IMAGEM PROVISÓRIA</text>
+    <text y="0" fill="#FFFFFF" fill-opacity="0.72" font-family="Arial, Helvetica, sans-serif" font-size="33" font-weight="700" letter-spacing="0.7">FUNDO TÉCNICO</text>
+    <text y="37" fill="#FFFFFF" fill-opacity="0.5" font-family="Arial, Helvetica, sans-serif" font-size="22">Substituir por foto de obra</text>
+    <text y="79" fill="#F48009" fill-opacity="0.85" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="2.0">SUBSTITUIR POR FOTO REAL</text>
+  </g>
+  <g stroke="rgba(255,255,255,0.16)" stroke-width="1" fill="none">
+    <path d="M43 360 h16 M960 43 v16"/>
+    <path d="M1877 360 h-16 M960 677 v-16"/>
+  </g>
+</svg>

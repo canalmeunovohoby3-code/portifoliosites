@@ -1,0 +1,184 @@
+ELIARTE & PAPEL — ONDE COLOCAR AS FOTOS E OS VÍDEOS
+===================================================
+
+Esta pasta é o único lugar onde você precisa mexer para publicar o material real.
+Coloque os arquivos com os nomes abaixo e o site passa a exibi-los automaticamente
+(as molduras provisórias somem sozinhas).
+
+IMPORTANTE: nomes de arquivo precisam ficar exatamente iguais, em minúsculas.
+Formatos aceitos: .jpg / .jpeg / .png / .webp para fotos, .mp4 para vídeos.
+
+Se os seus arquivos tiverem outros nomes ou outro formato, é só me avisar
+qual é a pasta — eu ajusto os caminhos no código.
+
+
+1) LOGO
+-------
+midia/logo.png             500 x 500, PNG com fundo transparente
+
+    JÁ PUBLICADA. É um selo redondo, então aparece grande o suficiente para
+    ser legível, nos três lugares onde a marca precisa estar:
+
+    - topo do site (header) e rodapé, em todos os tamanhos de tela;
+    - seção "A marca", como um medalhão: passe-partout de papel em volta,
+      fio de impressão no limite do selo e um segundo fio, rosa, mais por
+      fora.
+
+    A logo nunca é redesenhada, recolorida nem distorcida — o arquivo é usado
+    exatamente como você enviou.
+
+    Se um dia enviar uma versão nova, mantenha o nome logo.png que ela troca
+    sozinha nos três lugares.
+
+
+2) PRIMEIRA DOBRA (HERO)
+------------------------
+midia/videos/video-hero.mp4   VERTICAL 3:4
+
+    JÁ PUBLICADO. Toca sozinho, mudo e em loop, no lugar onde antes seria
+    uma foto.
+
+    Tamanho atual: 14 segundos e 2,19 MB — bom para um vídeo de abertura.
+    (A versão anterior tinha 2min46 e 13 MB; está bem melhor agora.)
+
+    A moldura usa o formato real do arquivo, 3:4, então nada é cortado.
+
+    NUNCA TOCA COM SOM. O botão de pausar aparece no canto e fica visível
+    ao passar o mouse (no celular fica sempre visível).
+
+    Se o visitante estiver economizando dados ou em rede 2G, o vídeo não
+    toca sozinho — fica no primeiro quadro até ele apertar o play.
+
+
+3) SOBRE A MARCA
+----------------
+A seção mostra a LOGO em destaque (midia/logo.png), dentro de um medalhão
+circular. Não precisa enviar nenhuma foto aqui.
+
+    OPCIONAL: se quiser incluir uma foto sua, envie como
+    midia/sobre-eliarte.jpg (vertical 3:4) e me avise para eu ativar o retrato
+    na seção "A marca", ao lado do texto.
+
+
+4) DO SEU JEITO
+---------------
+midia/videos/marca.mp4     VERTICAL 9:16 (9,3 s)
+
+    JÁ PUBLICADO. O vídeo ocupa o espaço da direita, com a mesma moldura da
+    primeira dobra (passe-partout de papel com marca rosa).
+
+    Toca sozinho, mudo e em loop, e tem botão de pausar e barra de posição
+    para voltar e avançar. Os controles ficam discretos e aparecem por
+    completo ao passar o mouse — no celular ficam sempre visíveis.
+
+
+5) O QUE FAZEMOS — CARROSSEL DE TRABALHOS
+-----------------------------------------
+midia/fotos/foto-01.jpeg   Stitch — conjunto com display e lembrancinhas
+midia/fotos/foto-02.jpeg   Sonic — display com o nome Miguel
+midia/fotos/foto-03.jpeg   Minha primeira volta ao sol — toppers com o número 1
+midia/fotos/foto-04.jpeg   Minha primeira volta ao sol — toppers de sol
+midia/fotos/foto-05.jpeg   Minha primeira volta ao sol — caixinhas
+midia/fotos/foto-06.jpeg   Hello Kitty — topo de bolo, close
+midia/fotos/foto-07.jpeg   Minha primeira volta ao sol — caixinhas com o número 1
+midia/fotos/foto-08.jpeg   365 sorrisos — mesa completa da festa
+midia/fotos/foto-09.jpeg   365 sorrisos — bolo com sol, arco-íris e o número 1
+midia/fotos/foto-10.jpeg   365 sorrisos — docinhos com toppers
+
+    JÁ PUBLICADAS. As dez estão no carrossel, na ordem acima.
+
+    Este é o carrossel principal do site.
+    - Nenhuma legenda aparece sobre as fotos: a imagem fala por si.
+    - TODAS as fotos estão em 3:4, o mesmo formato da moldura. Por isso os
+      cards ficam rigorosamente do mesmo tamanho e nenhuma imagem é cortada.
+    - Só aparecem as fotos que existem: nenhum espaço vazio no carrossel.
+    - Ao clicar, a peça abre inteira, sem nenhum corte.
+
+    PARA ACRESCENTAR MAIS FOTOS: salve como foto-11.jpeg, foto-12.jpeg e assim
+    por diante, na mesma pasta, e me avise. Eu acrescento na lista — o carrossel
+    navega quantas forem, uma por uma, pelas setas ou por swipe no celular.
+    Mande na ordem em que quer que apareçam.
+
+    IMPORTANTE: envie sempre no formato 3:4 (vertical). Foi um arquivo quadrado
+    que deixou um card menor que os outros antes. Se tiver uma foto em outro
+    formato que você queira muito usar, me avise que eu vejo como encaixar.
+
+    OBS: me diga se alguma ordem ou algum texto de acessibilidade precisa mudar.
+    Hoje cada foto tem uma descrição escrita a partir do que aparece na imagem
+    (ex.: "Mesa de festa personalizada no tema 365 sorrisos, com bolo, cupcakes,
+    docinhos e lembrancinhas") — é isso que o Google e os leitores de tela leem.
+
+
+6) VÍDEOS — 4 VÍDEOS, TODOS VERTICAIS 9:16
+-----------------------------------------
+midia/videos/video-01.mp4      9:16   (5,7 s)
+midia/videos/video-02.mp4      9:16   (26,3 s)
+midia/videos/video-03.mp4      9:16   (13,9 s)
+midia/videos/video-04.mp4      9:16   (17,5 s)
+
+    JÁ PUBLICADOS. Os quatro estão no ar.
+
+    Como todos estão em 9:16, a linha ficou perfeitamente uniforme: quatro
+    molduras iguais em uma linha no computador, dois por linha no tablet e
+    no celular.
+
+    POSTER (opcional). Sem poster, o site usa o primeiro quadro do próprio
+    vídeo como miniatura, e isso já está funcionando. Se você tiver uma foto
+    de capa melhor para algum vídeo, envie como:
+midia/videos/video-01-poster.jpg
+midia/videos/video-02-poster.jpg
+midia/videos/video-03-poster.jpg
+midia/videos/video-04-poster.jpg
+
+    PRÓXIMOS VÍDEOS: nomeie como video-05.mp4, video-06.mp4 e me avise que eu
+    acrescento. O site não abre o vídeo automaticamente — só baixa os
+    metadados até alguém apertar o play, então não pesa no carregamento.
+
+    ME AVISE O QUE CADA VÍDEO MOSTRA. Hoje os textos de acessibilidade estão
+    genéricos ("Vídeo de detalhes e acabamento de um personalizado"). Com a
+    sua descrição eu escrevo o texto certo de cada um, o que ajuda tanto quem
+    usa leitor de tela quanto o Google.
+
+
+7) COMPARTILHAMENTO (WhatsApp, Instagram, Facebook)
+--------------------------------------------------
+og-cover.jpg    Imagem 1200 x 630 px exibida quando o link do site é compartilhado.
+                Hoje existe um og-cover.svg provisório com a identidade da marca.
+                Quando houver uma foto boa, me avise que eu troco.
+
+
+8) DEPOIMENTOS — ATENÇÃO, CONTEÚDO DE EXEMPLO
+---------------------------------------------
+Esta seção NÃO usa arquivo de mídia. Os textos estão em:
+    src/data/testimonials.ts
+
+    Os três depoimentos que estão no ar foram ESCRITOS PARA DEMONSTRAR O
+    LAYOUT. Eles não vieram da cliente e não são de pessoas reais. Por isso
+    a seção mostra um aviso: "Conteúdo de exemplo — substituir por
+    depoimentos reais antes de publicar".
+
+    POR QUE ISSO IMPORTA: no Brasil, depoimento inventado atribuído a uma
+    pessoa nomeada é publicidade enganosa (art. 37 do Código de Defesa do
+    Consumidor), e o CONAR também pune esse tipo de anúncio. Quem responde
+    é a Eliarte & Papel, não quem fez o site.
+
+    PARA PUBLICAR DE VERDADE:
+    1. Peça a cada cliente autorização para exibir o nome, a cidade e o
+       texto do depoimento.
+    2. Substitua os textos e nomes em src/data/testimonials.ts.
+    3. Avise que eu troco o aviso e libero a seção.
+
+    ALTERNATIVA MAIS RÁPIDA E MAIS FORTE: prints de conversa no WhatsApp
+    (com o nome escondido, se preferir) ou avaliações do Google. Prova real
+    convence mais que texto escrito e não tem risco nenhum. Me mande que eu
+    monto a seção com eles.
+
+    Se preferir tirar a seção do ar até ter depoimentos reais, é só falar.
+
+
+DICAS DE FOTO
+-------------
+- Mande os arquivos originais, sem redimensionar e sem compressão de WhatsApp.
+- Fotos verticais funcionam melhor neste layout.
+- Fundo com contexto (mesa, parede, decoração) valoriza mais que fundo branco.
+- Evite marcas d'água e filtros pesados.

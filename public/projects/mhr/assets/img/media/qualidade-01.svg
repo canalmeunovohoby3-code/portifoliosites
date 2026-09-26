@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1050" width="1400" height="1050" role="img" aria-label="QUALIDADE — imagem provisória">
+  <defs>
+    <pattern id="g1" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0V56" fill="none" stroke="rgba(255,255,255,0.055)" stroke-width="1"/>
+    </pattern>
+    <pattern id="g2" width="280" height="280" patternUnits="userSpaceOnUse">
+      <rect width="280" height="280" fill="url(#g1)"/>
+      <path d="M280 0H0V280" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#3a424c"/>
+      <stop offset="1" stop-color="#20252c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.78" cy="0.72" r="0.7">
+      <stop offset="0" stop-color="#F48009" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#F48009" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1400" height="1050" fill="url(#bg)"/>
+  <rect width="1400" height="1050" fill="url(#glow)"/>
+  <rect width="1400" height="1050" fill="url(#g2)"/>
+  <g stroke="#F48009" stroke-opacity="0.13" fill="none" stroke-width="1.6">
+    <circle cx="1036" cy="693" r="420"/>
+    <circle cx="1036" cy="693" r="243.6"/>
+    <circle cx="1363.6" cy="693.0" r="31.5"/><circle cx="1319.7" cy="856.8" r="31.5"/><circle cx="1199.8" cy="976.7" r="31.5"/><circle cx="1036.0" cy="1020.6" r="31.5"/><circle cx="872.2" cy="976.7" r="31.5"/><circle cx="752.3" cy="856.8" r="31.5"/><circle cx="708.4" cy="693.0" r="31.5"/><circle cx="752.3" cy="529.2" r="31.5"/><circle cx="872.2" cy="409.3" r="31.5"/><circle cx="1036.0" cy="365.4" r="31.5"/><circle cx="1199.8" cy="409.3" r="31.5"/><circle cx="1319.7" cy="529.2" r="31.5"/>
+  </g>
+  <rect x="0" y="1003.0" width="1400" height="3.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1013.4" width="1400" height="3.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1023.9" width="1400" height="3.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1034.3" width="1400" height="3.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1044.8" width="1400" height="3.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1055.2" width="1400" height="3.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1065.7" width="1400" height="3.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1076.1" width="1400" height="3.1" fill="#F48009" fill-opacity="0.1"/><rect x="0" y="1086.6" width="1400" height="3.1" fill="#F48009" fill-opacity="0.1"/>
+  <rect x="63" y="63" width="27" height="4" fill="#F48009" fill-opacity="0.5"/>
+  
+  <g transform="translate(700, 525)" text-anchor="middle" opacity="0.42">
+    <rect x="-17" y="-211" width="34" height="4" fill="#F48009"/>
+    <text y="-120" fill="#F48009" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" letter-spacing="4.6">IMAGEM PROVISÓRIA</text>
+    <text y="0" fill="#FFFFFF" fill-opacity="0.72" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="1.0">QUALIDADE</text>
+    <text y="56" fill="#FFFFFF" fill-opacity="0.5" font-family="Arial, Helvetica, sans-serif" font-size="33">Inspeção e soldagem</text>
+    <text y="119" fill="#F48009" fill-opacity="0.85" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" letter-spacing="2.9">SUBSTITUIR POR FOTO REAL</text>
+  </g>
+  <g stroke="rgba(255,255,255,0.16)" stroke-width="1" fill="none">
+    <path d="M63 525 h16 M700 63 v16"/>
+    <path d="M1337 525 h-16 M700 987 v-16"/>
+  </g>
+</svg>
