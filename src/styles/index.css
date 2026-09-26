@@ -272,19 +272,6 @@
   transform: scale(1.15);
 }
 
-/* Marcador fixo no centro */
-.rail__scanner {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 13px;
-  height: 13px;
-  margin: -6.5px 0 0 -6.5px;
-  border: 1px solid rgba(224, 74, 103, 0.85);
-  z-index: 4;
-  animation: rail-scanner 3.2s ease-in-out infinite;
-}
-
 /* Brilho que percorre a borda inferior */
 .rail__beam {
   position: absolute;
@@ -343,18 +330,6 @@
   }
   50% {
     transform: scale(1.16);
-    opacity: 1;
-  }
-}
-
-@keyframes rail-scanner {
-  0%,
-  100% {
-    transform: rotate(45deg) scale(1);
-    opacity: 0.85;
-  }
-  50% {
-    transform: rotate(45deg) scale(1.22);
     opacity: 1;
   }
 }

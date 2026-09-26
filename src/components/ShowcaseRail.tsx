@@ -134,7 +134,6 @@ export function ShowcaseRail() {
           {set(true)}
         </div>
 
-        <span className="rail__scanner" aria-hidden="true" />
         <span className="rail__beam" aria-hidden="true" />
         <span className="rail__fade rail__fade--l" aria-hidden="true" />
         <span className="rail__fade rail__fade--r" aria-hidden="true" />
