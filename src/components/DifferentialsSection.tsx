@@ -1,16 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
 import { differentialsSection } from '../data/content'
-import { cn } from '../lib/cn'
 import { SectionHeading } from './ui/SectionHeading'
 
-/** Tempo de cada diferencial no autoplay (ms). */
-const AUTOPLAY_MS = 4500
-
 /* ------------------------------------------------------------------ */
-/* Microvisuais (CSS/SVG) — um por conceito, feitos sob medida         */
+/* Microvisuais próprios (CSS/SVG) — um por diferencial                */
 /* ------------------------------------------------------------------ */
 
-/** 01 — blocos de layout se reorganizando (composição sob medida). */
+/** 01 — módulos de layout se reorganizando (interface sob medida). */
 function VisualDesign() {
   return (
     <div className="vis vis--design" aria-hidden="true">
@@ -22,7 +17,7 @@ function VisualDesign() {
   )
 }
 
-/** 02 — a interface adaptando a largura (responsivo). */
+/** 02 — a interface adaptando a largura (mobile / responsivo). */
 function VisualResponsive() {
   return (
     <div className="vis vis--responsive" aria-hidden="true">
@@ -38,7 +33,7 @@ function VisualResponsive() {
   )
 }
 
-/** 03 — hierarquia/estrutura desenhando as conexões (sitemap). */
+/** 03 — estrutura/hierarquia conectada (arquitetura de informação). */
 function VisualStructure() {
   return (
     <svg className="vis vis--structure" viewBox="0 0 320 200" fill="none" aria-hidden="true">
@@ -53,7 +48,7 @@ function VisualStructure() {
   )
 }
 
-/** 04 — o caminho até a conversão (foco no negócio). */
+/** 04 — o percurso até o objetivo (contato / ação). */
 function VisualFocus() {
   return (
     <div className="vis vis--focus" aria-hidden="true">
@@ -66,77 +61,19 @@ function VisualFocus() {
 
 const VISUALS = [VisualDesign, VisualResponsive, VisualStructure, VisualFocus]
 
-/* ------------------------------------------------------------------ */
-/* Seção                                                               */
-/* ------------------------------------------------------------------ */
-
+/**
+ * Diferenciais — quatro cards premium.
+ * O conteúdo é o aprovado; aqui só muda o tratamento visual: numeração
+ * editorial, microvisual próprio por card (sem ícones de biblioteca),
+ * profundidade, moldura refinada e microanimações no hover.
+ */
 export function DifferentialsSection() {
   const items = differentialsSection.items
-  const [active, setActive] = useState(0)
-  const [paused, setPaused] = useState(false)
-  const [inView, setInView] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-  const numberRef = useRef<HTMLSpanElement>(null)
-
-  // Pausa o autoplay quando a seção não está visível.
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el || !('IntersectionObserver' in window)) {
-      setInView(true)
-      return
-    }
-    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), {
-      threshold: 0.25,
-    })
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  // Autoplay elegante: 01 → 02 → 03 → 04 → 01, pausando na interação.
-  useEffect(() => {
-    if (paused || !inView) return
-    const id = window.setInterval(() => {
-      setActive((current) => (current + 1) % items.length)
-    }, AUTOPLAY_MS)
-    return () => window.clearInterval(id)
-  }, [paused, inView, items.length])
-
-  // Profundidade: o número grande acompanha a rolagem por poucos pixels.
-  useEffect(() => {
-    const el = numberRef.current
-    if (!el) return
-    let raf = 0
-    const onScroll = () => {
-      cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(() => {
-        const section = sectionRef.current
-        if (!section) return
-        const rect = section.getBoundingClientRect()
-        const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * 0.04
-        el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`
-      })
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      cancelAnimationFrame(raf)
-    }
-  }, [])
-
-  const current = items[active]
-  const Visual = VISUALS[active % VISUALS.length]
 
   return (
     <section
-      ref={sectionRef}
       id="diferenciais"
-      data-diff-active={active}
       className="relative scroll-mt-24 overflow-hidden bg-paper-soft py-20 sm:py-28"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
     >
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ink-200/70 to-transparent"
@@ -149,94 +86,44 @@ export function DifferentialsSection() {
           className="max-w-2xl"
         />
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-[minmax(0,0.4fr)_minmax(0,0.6fr)] lg:gap-16">
-          {/* Índice numerado */}
-          <div className="order-2 lg:order-1">
-            <ul className="flex gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-col lg:gap-0 lg:overflow-visible lg:pb-0">
-              {items.map((item, index) => {
-                const isActive = index === active
-                return (
-                  <li
-                    key={item.title}
-                    className="reveal w-[74%] shrink-0 snap-start sm:w-[46%] lg:w-full"
-                    style={{ transitionDelay: `${160 + index * 80}ms` }}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setActive(index)}
-                      onMouseEnter={() => setActive(index)}
-                      onFocus={() => setActive(index)}
-                      aria-current={isActive}
-                      className={cn(
-                        'group/item block w-full py-4 text-left transition-transform duration-300 ease-smooth lg:py-5',
-                        !isActive && 'lg:opacity-60 lg:hover:opacity-100',
-                      )}
-                    >
-                      <span className="flex items-center gap-4">
-                        <span
-                          className={cn(
-                            'font-display text-sm font-bold tabular-nums transition-colors duration-300',
-                            isActive ? 'text-accent-600' : 'text-ink-300',
-                          )}
-                        >
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
-                        <span
-                          className={cn(
-                            'h-px flex-1 origin-left transition-all duration-500 ease-smooth',
-                            isActive
-                              ? 'bg-accent-500'
-                              : 'bg-ink-200 group-hover/item:bg-accent-300',
-                          )}
-                        />
-                      </span>
-                      <span
-                        className={cn(
-                          'mt-3 block font-display text-lg font-bold tracking-tight transition-all duration-400 ease-smooth sm:text-xl',
-                          isActive
-                            ? 'translate-x-1 text-ink-900'
-                            : 'translate-x-0 text-ink-400 group-hover/item:text-ink-700',
-                        )}
-                      >
-                        {item.title}
-                      </span>
-                    </button>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {items.map((item, index) => {
+            const Visual = VISUALS[index % VISUALS.length]
+            return (
+              <div
+                key={item.title}
+                className="reveal flex"
+                style={{ transitionDelay: `${index * 90}ms` }}
+              >
+                <article className="diff-card group relative flex w-full flex-col rounded-2xl border border-ink-100 bg-white p-6 shadow-card transition-all duration-400 ease-smooth hover:-translate-y-1.5 hover:border-accent-200 hover:shadow-card-hover sm:p-7">
+                  {/* Numeração + régua que se expande no hover */}
+                  <div className="flex items-center gap-3">
+                    <span className="font-display text-[0.8rem] font-bold tabular-nums tracking-[0.18em] text-ink-300 transition-colors duration-300 group-hover:text-accent-600">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className="relative h-px flex-1 overflow-hidden bg-ink-100">
+                      <span className="absolute inset-y-0 left-0 w-0 bg-accent-500 transition-[width] duration-500 ease-smooth group-hover:w-full" />
+                    </span>
+                  </div>
 
-          {/* Palco do diferencial ativo */}
-          <div
-            className="reveal relative order-1 lg:order-2"
-            style={{ transitionDelay: '260ms' }}
-            onMouseEnter={() => setActive(active)}
-          >
-            <span
-              ref={numberRef}
-              aria-hidden="true"
-              className="pointer-events-none absolute -top-16 right-0 select-none font-display text-[8rem] font-extrabold leading-none tracking-tighter text-ink-900/[0.055] sm:text-[11rem] lg:-top-24"
-            >
-              {String(active + 1).padStart(2, '0')}
-            </span>
+                  {/* Microvisual */}
+                  <div className="diff-card__media relative mt-6 h-[168px] overflow-hidden rounded-xl">
+                    <div className="absolute inset-0 flex items-center justify-center p-4">
+                      <Visual />
+                    </div>
+                  </div>
 
-            <div key={active} className="relative animate-[fade-up_0.5s_cubic-bezier(0.22,1,0.36,1)_both]">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-accent-600">
-                Diferencial
-              </p>
-              <h3 className="mt-4 max-w-md font-display text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">
-                {current.title}
-              </h3>
-              <p className="mt-4 max-w-prose text-[1.02rem] leading-relaxed text-ink-500">
-                {current.description}
-              </p>
-
-              <div className="mt-10">
-                <Visual />
+                  {/* Conteúdo */}
+                  <h3 className="mt-6 font-display text-[1.05rem] font-bold leading-snug text-ink-900 transition-transform duration-400 ease-smooth group-hover:translate-x-1">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-[0.9rem] leading-relaxed text-ink-500">
+                    {item.description}
+                  </p>
+                </article>
               </div>
-            </div>
-          </div>
+            )
+          })}
         </div>
       </div>
     </section>

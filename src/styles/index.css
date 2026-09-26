@@ -626,3 +626,49 @@
     height: 200px;
   }
 }
+
+/* ============================================================
+   Diferenciais — moldura dos microvisuais nos cards
+   ============================================================ */
+
+.diff-card__media {
+  position: relative;
+  border: 1px solid rgba(26, 26, 26, 0.05);
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.02), rgba(26, 26, 26, 0.055));
+  transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.diff-card__media::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(26, 26, 26, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 26, 26, 0.045) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.6;
+}
+
+.diff-card:hover .diff-card__media {
+  border-color: rgba(224, 74, 103, 0.25);
+  transform: scale(1.015);
+}
+
+/* O microvisual preenche a moldura do card */
+.diff-card__media .vis {
+  width: 100%;
+  height: 100%;
+}
+
+/* No desktop o microvisual "ganha vida" no hover; no mobile fica sempre ativo */
+@media (hover: hover) {
+  .diff-card .vis,
+  .diff-card .vis * {
+    animation-play-state: paused;
+  }
+  .diff-card:hover .vis,
+  .diff-card:hover .vis * {
+    animation-play-state: running;
+  }
+}
