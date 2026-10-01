@@ -11,6 +11,8 @@
    automaticamente "<título> — imagem ilustrativa". Ao trocar por uma foto
    real, informe o `imageAlt` descrevendo o que ela mostra.
    `bullets` lista escopos/entregáveis típicos do serviço.
+   `applications` (opcional) descreve onde o serviço se aplica; quando presente,
+   o componente exibe uma linha "Aplicações" logo abaixo da descrição.
    ========================================================================== */
 (function (MHR) {
   'use strict';
@@ -18,11 +20,14 @@
   MHR.services = [
     {
       slug: 'montagem-eletromecanica',
-      title: 'Montagem Eletromecânica',
+      title: 'Montagem Eletromecânica Industrial',
       icon: 'layers',
       image: 'assets/img/services/servico-01.jpg',
       imageAlt: 'Montagem de transportador de correia com estrutura metálica em campo.',
-      short: 'Montagem e integração de equipamentos e sistemas industriais.',
+      short:
+        'Montagem e integração de equipamentos e sistemas industriais, incluindo montagem mecânica, interfaces entre equipamentos e integração de sistemas conforme o escopo do projeto.',
+      applications:
+        'plantas de mineração, beneficiamento, infraestrutura industrial e instalações agroindustriais.',
       scope:
         'Montagem e integração de equipamentos e sistemas industriais, com equipe multidisciplinar atuando de forma integrada com o planejamento da obra e com as demais disciplinas do projeto.',
       bullets: [
@@ -35,11 +40,12 @@
     },
     {
       slug: 'montagem-eletrica-instrumentacao',
-      title: 'Montagem Elétrica e Instrumentação',
+      title: 'Montagem Elétrica e Instrumentação Industrial',
       icon: 'bolt',
       image: 'assets/img/services/servico-02.jpg',
       imageAlt: 'Técnico testando os contatos de um painel elétrico com multímetro.',
-      short: 'Execução de instalações elétricas e sistemas de instrumentação industrial.',
+      short:
+        'Execução de instalações elétricas, montagem de painéis e comandos, lançamento e organização de cabos, instrumentação e serviços de campo conforme projeto e escopo contratado.',
       scope:
         'Execução de instalações elétricas e sistemas de instrumentação industrial, com organização de circuitos, identificação e rastreabilidade dos pontos executados.',
       bullets: [
@@ -74,6 +80,7 @@
       icon: 'clock',
       image: 'assets/img/services/servico-04.jpg',
       imageAlt: 'Equipe executando manutenção industrial em equipamento de grande porte.',
+      page: { label: 'Ver página do serviço', href: 'servicos/paradas-de-manutencao-industrial/' },
       short: 'Planejamento e execução de serviços durante paradas industriais.',
       scope:
         'Planejamento e execução de serviços durante paradas industriais, mobilizando equipes e recursos para cumprir a janela de parada com segurança e controle.',
@@ -86,12 +93,14 @@
     },
     {
       slug: 'caldeiraria-pesada-fabricacao',
-      title: 'Caldeiraria Pesada e Fabricação',
+      title: 'Caldeiraria Industrial e Fabricação',
       icon: 'tank',
       image: 'assets/img/services/servico-05.jpg',
       imageAlt:
         'Interior de moinho com placas de revestimento parafusadas e esferas de moagem no piso.',
-      short: 'Fabricação de chutes, silos, tremonhas, tanques, dutos e estruturas metálicas.',
+      short:
+        'Fabricação, recuperação e montagem de componentes, estruturas e conjuntos metálicos para manutenção e montagem industrial, conforme projeto, especificação e escopo contratado.',
+      applications: 'mineração, plantas de beneficiamento, infraestrutura industrial e agroindústria.',
       scope:
         'Fabricação de chutes, silos, tremonhas, tanques, dutos e estruturas metálicas, com controle dimensional e rastreabilidade dos materiais empregados.',
       bullets: [

@@ -24,9 +24,14 @@ export function Projects({ onOpen }: ProjectsProps) {
           className="max-w-2xl"
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 flex flex-wrap justify-center gap-6">
           {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} onOpen={onOpen} index={index} />
+            <div
+              key={project.id}
+              className="flex w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
+            >
+              <ProjectCard project={project} onOpen={onOpen} index={index} />
+            </div>
           ))}
         </div>
       </div>

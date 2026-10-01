@@ -33,6 +33,14 @@ const projects = [
   { id: 'saraiva', mode: 'vite', dir: 'CLIENTE 3651 SARAIVA' },
   { id: 'eliarte', mode: 'vite', dir: 'CLIENTE 3736 ELIARTE' },
   { id: 'fibra-net', mode: 'vite', dir: 'CLIENTE 1873/FIBRA NET' },
+  { id: 'gracindo', mode: 'vite', dir: 'CLIENTE 3740 Gracindo Tur' },
+  {
+    // Alcka-Lar: site estático. O hero.png (16,8 MB) não é usado — fica de fora.
+    id: 'alckalar',
+    mode: 'static',
+    dir: 'CLIENTE 1899',
+    skip: ['assets/img/hero.png'],
+  },
   {
     // Página de vendas do Orvix Offline (projeto baixado do GitHub).
     // Usa um config de build próprio, que gera SOMENTE a landing em .portfolio-preview.
@@ -54,18 +62,18 @@ const TEXT_EXTENSIONS = new Set([
 
 /** Normaliza caminhos absolutos locais para relativos. */
 function rewriteMediaPaths(text) {
-  // /assets/ , /midia/ , /images/ , /gallery/ , /img/  ->  ./...
-  // O lookbehind evita tocar em caminhos já relativos (./ , ../), em URLs
-  // externas (https://...) e em //.
+  // Só converte quando o caminho começa logo após um delimitador
+  // (aspas, parêntese, igual, vírgula, espaço, etc.). Isso evita tocar em
+  // URLs externas e, principalmente, em barras internas de caminhos com
+  // acento (ex.: ".../Byd Song Pró/1.png") — que seriam corrompidas por um
+  // lookbehind genérico.
   let out = text.replace(
-    /(?<![:/\w.-])\/(assets|midia|images|gallery|img)\//g,
+    /(?<=["'(=,;:>|&\s])\/(assets|midia|images|gallery|img)\//g,
     './$1/',
   )
 
-  // Arquivos servidos na raiz do projeto (ex.: /logo.svg, /VIDEO.mp4, /corte.svg),
-  // sempre como atributo/string. Não afeta URLs externas nem caminhos relativos.
   out = out.replace(
-    /(?<![:/\w.-])\/([A-Za-z0-9_][A-Za-z0-9_\- ]*\.(?:mp4|webm|ogg|mp3|png|jpe?g|webp|gif|avif|svg|ico|woff2?|ttf|otf|css|js|mjs|json|xml|txt|webmanifest|pdf|vcf))/g,
+    /(?<=["'(=,;:>|&\s])\/([A-Za-z0-9_][A-Za-z0-9_\- ]*\.(?:mp4|webm|ogg|mp3|png|jpe?g|webp|gif|avif|svg|ico|woff2?|ttf|otf|css|js|mjs|json|xml|txt|webmanifest|pdf|vcf))/g,
     './$1',
   )
 
@@ -202,17 +210,18 @@ function patchMhrPreview(destDir) {
   }
 }
 
-function copyTree(src, dest) {
+function copyTree(src, dest, skip = []) {
   mkdirSync(dest, { recursive: true })
   for (const entry of readdirSync(src)) {
     if (entry === '.git' || entry === '.kilo' || entry === 'node_modules') continue
     if (entry === '.portfolio-preview') continue
     const srcPath = path.join(src, entry)
     const destPath = path.join(dest, entry)
+    if (skip.length && skip.some((s) => srcPath.replace(/\\/g, '/').includes(s))) continue
     const stat = statSync(srcPath)
 
     if (stat.isDirectory()) {
-      copyTree(srcPath, destPath)
+      copyTree(srcPath, destPath, skip)
       continue
     }
 
@@ -226,7 +235,7 @@ function copyTree(src, dest) {
 }
 
 /** Copia um build estático, ignorando arquivos de projeto. */
-function copyStaticProject(srcDir, destDir) {
+function copyStaticProject(srcDir, destDir, skip = []) {
   mkdirSync(destDir, { recursive: true })
   for (const entry of readdirSync(srcDir)) {
     if (['.git', '.kilo', 'node_modules', 'tools', 'package.json', 'README.md'].includes(entry)) {
@@ -234,15 +243,37 @@ function copyStaticProject(srcDir, destDir) {
     }
     const srcPath = path.join(srcDir, entry)
     const destPath = path.join(destDir, entry)
+    if (skip.length && skip.some((s) => srcPath.replace(/\\/g, '/').includes(s))) continue
     const stat = statSync(srcPath)
     if (stat.isDirectory()) {
-      copyTree(srcPath, destPath)
+      copyTree(srcPath, destPath, skip)
     } else if (shouldProcess(destPath)) {
       writeFileSync(destPath, rewriteMediaPaths(readFileSync(srcPath, 'utf8')), 'utf8')
     } else {
       writeFileSync(destPath, readFileSync(srcPath))
     }
   }
+}
+
+/**
+ * Ajustes exclusivos do preview da Gracindo Tur.
+ *
+ * O site referencia as fotos da frota por caminho absoluto
+ * (`/Sedan executivo.../1.png`), que quebraria dentro da subpasta do portfólio.
+ * Aqui esses caminhos passam a ser relativos — SOMENTE no preview.
+ */
+function patchGracindoPreview(destDir) {
+  const entries = readdirSync(destDir, { withFileTypes: true })
+    .map((entry) => entry.name)
+    .filter((name) => name !== 'index.html' && !name.startsWith('.'))
+
+  const replacements = []
+  for (const name of entries) {
+    replacements.push({ from: `"/${name}`, to: `"./${name}` })
+    replacements.push({ from: `'/${name}`, to: `'./${name}` })
+  }
+
+  replaceInTree(destDir, replacements)
 }
 
 function buildViteProject(clientDir, tempOutDir, config) {
@@ -276,7 +307,7 @@ function main() {
 
     try {
       if (project.mode === 'static') {
-        copyStaticProject(clientDir, destDir)
+        copyStaticProject(clientDir, destDir, project.skip ?? [])
         if (project.id === 'mhr') {
           patchMhrPreview(destDir)
           console.log('[ok] imagens da MHR completadas (preview)')
@@ -300,6 +331,11 @@ function main() {
         if (project.id === 'orvix') {
           patchOrvixPreview(destDir)
           console.log('[ok] imagens da CDN substituídas por assets locais (preview)')
+        }
+
+        if (project.id === 'gracindo') {
+          patchGracindoPreview(destDir)
+          console.log('[ok] caminhos das fotos da frota convertidos para relativos (preview)')
         }
 
         summary.push({ id: project.id, ok: true })

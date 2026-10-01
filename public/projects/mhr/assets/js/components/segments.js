@@ -37,6 +37,13 @@
           '<p class="segment__text">' +
           dom.esc(segment.short) +
           '</p>' +
+          (segment.cta
+            ? '<a class="segment__cta" href="' +
+              dom.esc(segment.cta.href) +
+              '">' +
+              dom.esc(segment.cta.label) +
+              '</a>'
+            : '') +
           '</article>'
         );
       })
@@ -55,7 +62,7 @@
           '<article class="service-detail' +
           reverse +
           ' reveal" id="' +
-          dom.esc(segment.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')) +
+          dom.esc(segment.slug || segment.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')) +
           '">' +
           '<div class="service-detail__media media-frame media-frame--zoom media-frame--tech aspect-4x3">' +
           '<img src="' +
@@ -83,9 +90,19 @@
             })
             .join('') +
           '</ul>' +
-          '<p><a class="link-arrow" href="contato.html">Falar com a engenharia' +
+          '<p>' +
+          (segment.page
+            ? '<a class="link-arrow" href="' +
+              dom.esc(segment.page.href) +
+              '">' +
+              dom.esc(segment.page.label) +
+              icon('arrow-right') +
+              '</a>&nbsp;&nbsp;'
+            : '') +
+          '<a class="link-arrow" href="contato.html">Falar com a engenharia' +
           icon('arrow-right') +
-          '</a></p>' +
+          '</a>' +
+          '</p>' +
           '</div>' +
           '</article>'
         );

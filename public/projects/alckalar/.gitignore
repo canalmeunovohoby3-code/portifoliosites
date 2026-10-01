@@ -1,0 +1,23 @@
+# Sistema
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Logs e temporários
+*.log
+*.tmp
+
+# Arquivo-fonte pesado da fotografia do hero (o site usa as versões otimizadas)
+assets/img/hero.png
+
+# Originais das fotos da galeria (o site usa as versões otimizadas galeria-0X)
+assets/img/galeria/foto*.jpg

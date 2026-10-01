@@ -17,7 +17,7 @@
 
     /* Texto de posicionamento (usado em SEO, footer, etc.) */
     description:
-      'Engenharia industrial, montagem eletromecânica, manutenção industrial, caldeiraria pesada e fabricação em Varginha/MG, atendendo o Sul de Minas e todo o estado de Minas Gerais.',
+      'Engenharia industrial, montagem eletromecânica, manutenção industrial, caldeiraria pesada e fabricação, com sede em Varginha/MG e atuação em todo o território nacional.',
 
     address: {
       street: 'Av. Dom Othon Motta, 530, Sala 01',
@@ -29,18 +29,18 @@
     },
 
     area: {
-      region: 'Sul de Minas e todo o estado de Minas Gerais',
-      note: 'Disponibilidade para outras regiões conforme o projeto.',
+      region: 'Todo o território nacional',
+      note: 'Atuação em todo o Brasil, com mobilização conforme o projeto.',
     },
 
     technical: {
-      crea: 'Responsável técnico registrado no CREA',
-      safety: 'Atuação conforme as normas de segurança aplicáveis.',
+      crea: 'CREA/ART quando aplicável',
+      safety: 'Requisitos de segurança/HSE aplicáveis ao escopo contratado.',
     },
 
     /* ----------------------------------------------------------------------
-       Canais de contato — preencher quando definidos.
-       Exemplos:
+       Canais de contato oficiais. Use `null` no que ainda não existir.
+       Formato:
          phone:    { label: '(00) 0000-0000', href: 'tel:+550000000000' }
          whatsapp: { label: 'WhatsApp', href: 'https://wa.me/550000000000' }
          email:    { label: 'contato@empresa.com.br', href: 'mailto:...' }
@@ -48,11 +48,11 @@
          linkedin: { label: '/empresa', href: 'https://linkedin.com/company/...' }
        ---------------------------------------------------------------------- */
     contact: {
-      phone: null,
-      whatsapp: null,
+      phone: { label: '(35) 3677-1560', href: 'tel:+553536771560' },
+      whatsapp: { label: '(35) 3677-1560', href: 'https://wa.me/553536771560' },
       email: null,
-      instagram: null,
-      linkedin: null,
+      instagram: { label: '@mhrengenharias', href: 'https://www.instagram.com/mhrengenharias' },
+      linkedin: { label: 'mhrengenharia', href: 'https://www.linkedin.com/company/mhrengenharia' },
     },
 
     /* Endereço usado no mapa incorporado */

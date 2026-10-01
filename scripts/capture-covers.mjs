@@ -41,6 +41,8 @@ const covers = [
   { id: 'saraiva', path: 'projects/saraiva/index.html' },
   { id: 'eliarte', path: 'projects/eliarte/index.html' },
   { id: 'fibra-net', path: 'projects/fibra-net/index.html' },
+  { id: 'gracindo', path: 'projects/gracindo/index.html' },
+  { id: 'alckalar', path: 'projects/alckalar/index.html' },
   { id: 'orvix', path: 'projects/orvix/landing.html' },
 ]
 

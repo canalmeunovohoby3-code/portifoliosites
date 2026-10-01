@@ -77,6 +77,11 @@
       '<p class="service-detail__text">' +
       dom.esc(text) +
       '</p>' +
+      (service.applications
+        ? '<p class="service-detail__applications"><strong>Aplicações</strong> ' +
+          dom.esc(service.applications) +
+          '</p>'
+        : '') +
       (shownBullets.length
         ? '<ul class="service-detail__list">' +
           shownBullets
@@ -86,7 +91,16 @@
             .join('') +
           '</ul>'
         : '') +
-      '<p><a class="link-arrow" href="' +
+      '<p>' +
+      (!preview && service.page
+        ? '<a class="link-arrow" href="' +
+          dom.esc(service.page.href) +
+          '">' +
+          dom.esc(service.page.label) +
+          icon('arrow-right') +
+          '</a>&nbsp;&nbsp;'
+        : '') +
+      '<a class="link-arrow" href="' +
       dom.esc(href) +
       '">' +
       linkLabel +

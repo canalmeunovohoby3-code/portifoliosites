@@ -11,20 +11,23 @@
     mhr: [
       { label: 'A Empresa', href: 'a-empresa.html' },
       { label: 'Serviços', href: 'servicos.html' },
-      { label: 'Segmentos', href: 'segmentos.html' },
-      { label: 'Engenharia', href: 'engenharia.html' },
+      { label: 'Engenharia e HSE', href: 'engenharia.html' },
+      { label: 'Atuação Nacional', href: 'atuacao-nacional/' },
+    ],
+    segments: [
+      { label: 'Mineração', href: 'segmentos/montagem-manutencao-industrial-mineracao/' },
+      { label: 'Agroindústria', href: 'segmentos/montagem-manutencao-industrial-agroindustria/' },
     ],
     services: [
       { label: 'Montagem Eletromecânica', href: 'servicos.html#montagem-eletromecanica' },
       { label: 'Manutenção Industrial', href: 'servicos.html#manutencao-industrial' },
-      { label: 'Caldeiraria Pesada', href: 'servicos.html#caldeiraria-pesada-fabricacao' },
+      { label: 'Paradas de Manutenção', href: 'servicos/paradas-de-manutencao-industrial/' },
+      { label: 'Caldeiraria Industrial', href: 'servicos.html#caldeiraria-pesada-fabricacao' },
       { label: 'Soldagem Industrial', href: 'servicos.html#soldagem-industrial' },
       { label: 'Vulcanização de Correias', href: 'servicos.html#vulcanizacao-de-correias' },
     ],
     institutional: [
-      { label: 'Engenharia', href: 'engenharia.html' },
       { label: 'Segurança e Qualidade', href: 'seguranca-qualidade.html' },
-      { label: 'Segmentos', href: 'segmentos.html' },
       { label: 'Contato', href: 'contato.html' },
     ],
   };
@@ -141,9 +144,7 @@
       MHR.components.logo.brand({ light: true, href: 'index.html' }) +
       '<p class="footer__about">' +
       dom.esc(
-        'Engenharia industrial, montagem eletromecânica, manutenção, caldeiraria e fabricação. Atendimento ao ' +
-          site.area.region +
-          '.'
+        'A MHR Engenharia atua em montagem e manutenção industrial, com foco em mineração e agroindústria, mobilizando equipes conforme o escopo e os requisitos de cada projeto em todo o território nacional.'
       ) +
       '</p>' +
       socialRow() +
@@ -151,6 +152,10 @@
       '<div class="footer__col footer__col--mhr">' +
       '<h2 class="footer__title">MHR</h2>' +
       linkList(columns.mhr) +
+      '</div>' +
+      '<div class="footer__col footer__col--segments">' +
+      '<h2 class="footer__title">Segmentos</h2>' +
+      linkList(columns.segments) +
       '</div>' +
       '<div class="footer__col footer__col--services">' +
       '<h2 class="footer__title">Serviços</h2>' +
@@ -166,9 +171,9 @@
       addressBlock() +
       contactItem('phone', 'Telefone', site.contact.phone) +
       contactItem('whatsapp', 'WhatsApp', site.contact.whatsapp) +
-      contactItem('instagram', 'Instagram', site.contact.instagram) +
-      contactItem('linkedin', 'LinkedIn', site.contact.linkedin) +
+      contactItem('mail', 'E-mail', site.contact.email) +
       '</div>' +
+      '<a class="btn btn--primary footer__cta" href="contato.html">Solicitar proposta técnica</a>' +
       '</div>' +
       '</div>' +
       '</div>' +

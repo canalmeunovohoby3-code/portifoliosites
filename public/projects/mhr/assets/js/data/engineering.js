@@ -32,40 +32,40 @@
 
     deliverables: [
       {
-        title: 'Cronogramas',
+        title: 'Cronogramas de execução',
         icon: 'calendar',
         text: 'Programação de atividades físicas e físico-financeiras, com marcos e caminho crítico.',
       },
       {
-        title: 'Medições',
+        title: 'Medições e acompanhamento físico',
         icon: 'ruler',
         text: 'Apuração de avanço e medição dos serviços executados para acompanhamento contratual.',
       },
       {
-        title: 'RDO',
+        title: 'RDO — Registro Diário de Obra',
         icon: 'clipboard',
         text: 'Relatórios diários de obra com efetivo, equipamentos, atividades e ocorrências.',
       },
       {
-        title: 'Databook',
+        title: 'Relatórios de execução',
+        icon: 'file',
+        text: 'Consolidação periódica do andamento da execução, com avanço, recursos e ocorrências registradas.',
+      },
+      {
+        title: 'Documentação técnica',
         icon: 'file',
         text: 'Organização da documentação técnica produzida ao longo da execução dos serviços.',
       },
       {
-        title: 'As-built',
+        title: 'As-built e databook, quando aplicáveis',
         icon: 'blueprint',
-        text: 'Registro do que foi efetivamente executado em campo e suas alterações em relação ao projeto.',
-      },
-      {
-        title: 'Controle de obras',
-        icon: 'target',
-        text: 'Gestão de prazos, recursos e produtividade com visibilidade para o cliente.',
+        text: 'Registro do que foi efetivamente executado em campo, com as alterações em relação ao projeto.',
       },
     ],
 
     responsibility: [
-      'Responsável técnico registrado no CREA',
-      'Execução conforme as normas de segurança aplicáveis',
+      'Responsabilidade técnica com CREA/ART quando aplicável',
+      'Requisitos de segurança/HSE aplicáveis ao escopo contratado',
       'Registros e documentação de obra organizados',
       'Interface técnica direta com a equipe do cliente',
     ],

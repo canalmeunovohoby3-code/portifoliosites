@@ -21,7 +21,7 @@
     {
       icon: 'badge',
       title: 'Responsabilidade Técnica',
-      text: 'Atuação com responsável técnico registrado no CREA.',
+      text: 'Atuação com responsabilidade técnica e CREA/ART quando aplicável.',
     },
     {
       icon: 'shield',

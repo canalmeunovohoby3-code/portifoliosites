@@ -64,7 +64,7 @@
       '</li>' +
       '</ul>' +
       '<div class="topbar__aside">' +
-      '<span class="topbar__badge">Responsável técnico CREA</span>' +
+      '<span class="topbar__badge">CREA / ART</span>' +
       contact +
       '</div>' +
       '</div>' +
