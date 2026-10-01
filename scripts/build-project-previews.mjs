@@ -255,25 +255,58 @@ function copyStaticProject(srcDir, destDir, skip = []) {
   }
 }
 
+const GRACINDO_ASSETS_DIR = path.join(__dirname, 'gracindo-assets')
+
+/** Lista arquivos recursivamente, devolvendo caminhos relativos com "/". */
+function listFiles(dir, base = '') {
+  const out = []
+  if (!existsSync(dir)) return out
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const rel = base ? `${base}/${entry.name}` : entry.name
+    if (entry.isDirectory()) out.push(...listFiles(path.join(dir, entry.name), rel))
+    else out.push(rel)
+  }
+  return out
+}
+
 /**
  * Ajustes exclusivos do preview da Gracindo Tur.
  *
- * O site referencia as fotos da frota por caminho absoluto
- * (`/Sedan executivo.../1.png`), que quebraria dentro da subpasta do portfólio.
- * Aqui esses caminhos passam a ser relativos — SOMENTE no preview.
+ * 1) O site referencia as fotos da frota por caminho absoluto
+ *    (`/Sedan executivo.../1.png`), que quebraria dentro da subpasta do
+ *    portfólio — aqui viram relativos.
+ * 2) As fotos da frota são trocadas por versões JPEG (bem mais leves que os
+ *    PNG originais) e os PNGs pesados são removidos do preview.
+ *
+ * Tudo SOMENTE no preview; o projeto original do cliente não é alterado.
  */
 function patchGracindoPreview(destDir) {
+  // 1) absoluto -> relativo
   const entries = readdirSync(destDir, { withFileTypes: true })
     .map((entry) => entry.name)
     .filter((name) => name !== 'index.html' && !name.startsWith('.'))
 
-  const replacements = []
+  const absToRel = []
   for (const name of entries) {
-    replacements.push({ from: `"/${name}`, to: `"./${name}` })
-    replacements.push({ from: `'/${name}`, to: `'./${name}` })
+    absToRel.push({ from: `"/${name}`, to: `"./${name}` })
+    absToRel.push({ from: `'/${name}`, to: `'./${name}` })
   }
+  replaceInTree(destDir, absToRel)
 
-  replaceInTree(destDir, replacements)
+  // 2) PNG pesado -> JPEG leve
+  const swaps = []
+  for (const rel of listFiles(GRACINDO_ASSETS_DIR)) {
+    const pngRel = rel.replace(/\.jpg$/i, '.png')
+    swaps.push({ from: pngRel, to: rel })
+
+    const dest = path.join(destDir, ...rel.split('/'))
+    mkdirSync(path.dirname(dest), { recursive: true })
+    copyFileSync(path.join(GRACINDO_ASSETS_DIR, ...rel.split('/')), dest)
+
+    const pngPath = path.join(destDir, ...pngRel.split('/'))
+    if (existsSync(pngPath)) rmSync(pngPath, { force: true })
+  }
+  replaceInTree(destDir, swaps)
 }
 
 function buildViteProject(clientDir, tempOutDir, config) {
