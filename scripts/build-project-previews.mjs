@@ -309,6 +309,34 @@ function patchGracindoPreview(destDir) {
   replaceInTree(destDir, swaps)
 }
 
+const ALCKALAR_ASSETS_DIR = path.join(__dirname, 'alckalar-assets')
+
+const ALCKALAR_HERO_FROM = `        <figure class="ph ph--4x5 ph--card" role="img" aria-label="Espaço reservado para fotografia de obra residencial">
+          <span class="ph__grid" aria-hidden="true"></span>
+          <span class="ph__cross" aria-hidden="true"></span>
+          <figcaption class="ph__tag">Foto &middot; 02</figcaption>
+        </figure>`
+
+const ALCKALAR_HERO_TO = `        <figure class="ph ph--4x5 ph--card">
+          <img class="ph__img" src="assets/img/hero-obra.jpg" alt="Obra residencial em construção" loading="lazy" decoding="async">
+        </figure>`
+
+/**
+ * Ajustes exclusivos do preview da Alcka-Lar.
+ * O hero tem um card reservado para fotografia de obra; aqui ele recebe uma
+ * foto real (obra residencial), preservando a estrutura e o estilo do card.
+ * SOMENTE no preview — o projeto original do cliente não é alterado.
+ */
+function patchAlckalarPreview(destDir) {
+  const src = path.join(ALCKALAR_ASSETS_DIR, 'hero-obra.jpg')
+  if (existsSync(src)) {
+    const dest = path.join(destDir, 'assets', 'img', 'hero-obra.jpg')
+    mkdirSync(path.dirname(dest), { recursive: true })
+    copyFileSync(src, dest)
+  }
+  replaceInTree(destDir, [{ from: ALCKALAR_HERO_FROM, to: ALCKALAR_HERO_TO }])
+}
+
 function buildViteProject(clientDir, tempOutDir, config) {
   const command = config
     ? `npx vite build --config "${config}"`
@@ -344,6 +372,10 @@ function main() {
         if (project.id === 'mhr') {
           patchMhrPreview(destDir)
           console.log('[ok] imagens da MHR completadas (preview)')
+        }
+        if (project.id === 'alckalar') {
+          patchAlckalarPreview(destDir)
+          console.log('[ok] foto inserida no card do hero da Alcka-Lar (preview)')
         }
         summary.push({ id: project.id, ok: true })
         console.log(`[ok] copiado (estático) -> ${destDir}`)
