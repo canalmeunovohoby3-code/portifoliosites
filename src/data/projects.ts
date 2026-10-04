@@ -133,6 +133,20 @@ export const projects: Project[] = [
     highlights: ['Obras e referências', 'Etapas da construção', 'Contato direto'],
   },
   {
+    id: 'dcribio',
+    name: 'Dcribioshop',
+    category: 'Comércio/Serviços',
+    description:
+      'E-commerce de brindes, adesivos e sinalização, com catálogo de produtos, personalização e orçamento pelo WhatsApp.',
+    segment: 'Brindes, adesivos e sinalização',
+    url: 'dcribioshop.com.br',
+    previewUrl: 'projects/dcribio/index.html',
+    iframeEnabled: true,
+    coverImage: 'covers/dcribio.jpg',
+    technologies: ['React', 'JavaScript'],
+    highlights: ['Catálogo de produtos', 'Orçamento personalizado', 'Contato pelo WhatsApp'],
+  },
+  {
     id: 'fibra-net',
     name: 'Fibra Net',
     category: 'Outros',

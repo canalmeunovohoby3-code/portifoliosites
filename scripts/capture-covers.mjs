@@ -43,6 +43,9 @@ const covers = [
   { id: 'fibra-net', path: 'projects/fibra-net/index.html' },
   { id: 'gracindo', path: 'projects/gracindo/index.html' },
   { id: 'alckalar', path: 'projects/alckalar/index.html' },
+  { id: 'dcribio', path: 'projects/dcribio/index.html', waitMs: 8000 },
+  { id: 'sorveteria', path: 'menus/sorveteria/index.html', waitMs: 1500 },
+  { id: 'restaurante', path: 'menus/restaurante/index.html', waitMs: 1500 },
   { id: 'orvix', path: 'projects/orvix/landing.html' },
 ]
 
@@ -196,7 +199,7 @@ async function main() {
       await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 })
       await page.goto(`${origin}/${cover.path}`, { waitUntil: 'load', timeout: 45000 })
       await page.evaluate(() => window.scrollTo(0, 0))
-      await new Promise((resolve) => setTimeout(resolve, 2400))
+      await new Promise((resolve) => setTimeout(resolve, cover.waitMs ?? 2400))
 
       if (cover.fullPage) {
         await page.screenshot({

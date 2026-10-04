@@ -3,6 +3,7 @@ export type ProjectCategory =
   | 'Landing Pages'
   | 'Portfólios'
   | 'Comércio/Serviços'
+  | 'Cardápios'
   | 'Outros'
 
 /**

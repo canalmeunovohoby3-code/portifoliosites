@@ -2,11 +2,11 @@ import { useCallback, useState } from 'react'
 import type { Project } from './types'
 import { AboutSection } from './components/AboutSection'
 import { AudienceSection } from './components/AudienceSection'
-import { DifferentialsSection } from './components/DifferentialsSection'
 import { FinalCTA } from './components/FinalCTA'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
+import { MenusSection } from './components/MenusSection'
 import { ProcessSection } from './components/ProcessSection'
 import { ProjectPreview } from './components/ProjectPreview'
 import { Projects } from './components/Projects'
@@ -39,7 +39,7 @@ export default function App() {
         <ShowcaseRail />
         <Projects onOpen={openProject} />
         <ProcessSection />
-        <DifferentialsSection />
+        <MenusSection onOpen={openProject} />
         <AudienceSection />
         <AboutSection />
         <FinalCTA />

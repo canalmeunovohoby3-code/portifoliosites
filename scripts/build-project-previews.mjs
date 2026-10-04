@@ -35,6 +35,12 @@ const projects = [
   { id: 'fibra-net', mode: 'vite', dir: 'CLIENTE 1873/FIBRA NET' },
   { id: 'gracindo', mode: 'vite', dir: 'CLIENTE 3740 Gracindo Tur' },
   {
+    id: 'dcribio',
+    mode: 'vite',
+    dir: 'CLIENTE 3742 DCRIBIO',
+    config: path.join(__dirname, 'dcribio', 'vite.config.mjs'),
+  },
+  {
     // Alcka-Lar: site estático. O hero.png (16,8 MB) não é usado — fica de fora.
     id: 'alckalar',
     mode: 'static',
@@ -280,18 +286,27 @@ function listFiles(dir, base = '') {
  *
  * Tudo SOMENTE no preview; o projeto original do cliente não é alterado.
  */
-function patchGracindoPreview(destDir) {
-  // 1) absoluto -> relativo
+/**
+ * Converte caminhos absolutos de arquivos/pastas da raiz do site para
+ * relativos (ex.: "/banners/x.png" -> "./banners/x.png"). Necessário porque o
+ * preview é servido dentro de uma subpasta do portfólio.
+ */
+function relativizeRootPaths(destDir) {
   const entries = readdirSync(destDir, { withFileTypes: true })
     .map((entry) => entry.name)
     .filter((name) => name !== 'index.html' && !name.startsWith('.'))
 
-  const absToRel = []
+  const replacements = []
   for (const name of entries) {
-    absToRel.push({ from: `"/${name}`, to: `"./${name}` })
-    absToRel.push({ from: `'/${name}`, to: `'./${name}` })
+    replacements.push({ from: `"/${name}`, to: `"./${name}` })
+    replacements.push({ from: `'/${name}`, to: `'./${name}` })
   }
-  replaceInTree(destDir, absToRel)
+  replaceInTree(destDir, replacements)
+}
+
+function patchGracindoPreview(destDir) {
+  // 1) absoluto -> relativo
+  relativizeRootPaths(destDir)
 
   // 2) PNG pesado -> JPEG leve
   const swaps = []
@@ -401,6 +416,11 @@ function main() {
         if (project.id === 'gracindo') {
           patchGracindoPreview(destDir)
           console.log('[ok] caminhos das fotos da frota convertidos para relativos (preview)')
+        }
+
+        if (project.id === 'dcribio') {
+          relativizeRootPaths(destDir)
+          console.log('[ok] caminhos do Dcribioshop convertidos para relativos (preview)')
         }
 
         summary.push({ id: project.id, ok: true })

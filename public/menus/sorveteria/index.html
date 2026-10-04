@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gelateria Dolce Neve | Cardápio Digital</title>
+<meta name="description" content="Cardápio digital da Gelateria Dolce Neve — sorvetes artesanais, milkshakes, açaí e sobremesas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="../menu.css">
+</head>
+<body class="theme-sorveteria" data-brand="Gelateria Dolce Neve" data-whatsapp="5500900000000">
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <div class="brand"><span class="brand__dot">DN</span><div>Gelateria Dolce Neve<small>Sorvetes artesanais</small></div></div>
+      <button class="cart-btn" data-open-cart>Sacola <span class="cart-btn__count" data-cart-count>0</span></button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img class="hero__img" src="img/hero.jpg" alt="Balcão de sorvetes artesanais com várias opções">
+    <div class="wrap hero__body">
+      <span class="hero__eyebrow">Sorveteria &amp; Açaí</span>
+      <h1>Gelateria Dolce Neve</h1>
+      <p>Sorvetes artesanais, milkshakes cremosos e açaí montado na hora. Feito para adoçar o seu dia.</p>
+    </div>
+  </section>
+
+  <section class="meta">
+    <div class="wrap meta__inner">
+      <span><strong>Aberto todos os dias</strong> · 12h às 23h</span>
+      <span><strong>Rua das Flores, 120</strong> · Centro</span>
+      <span><strong>(00) 90000-0000</strong> · pedidos pelo WhatsApp</span>
+    </div>
+  </section>
+
+  <nav class="cats" aria-label="Categorias">
+    <div class="wrap cats__inner">
+      <button class="chip is-active" data-cat="cat-sorvetes">Sorvetes</button>
+      <button class="chip" data-cat="cat-milkshakes">Milkshakes</button>
+      <button class="chip" data-cat="cat-acai">Açaí</button>
+      <button class="chip" data-cat="cat-sobremesas">Sobremesas</button>
+    </div>
+  </nav>
+
+  <main class="menu wrap">
+    <section class="cat-block" id="cat-sorvetes" data-block>
+      <div class="cat-block__head"><h2>Sorvetes</h2><span>artesanais, feitos na casa</span></div>
+      <div class="grid">
+        <article class="item">
+          <div class="item__media"><img src="img/sorvete-artesanal.jpg" alt="Três bolas de sorvete artesanal" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Sorvete Artesanal (3 bolas)</h3><span class="item__price">R$ 18,00</span></div>
+            <p>Escolha três sabores do dia, com cobertura e calda da casa.</p>
+            <button class="item__add" data-add data-name="Sorvete Artesanal (3 bolas)" data-price="18">Adicionar</button>
+          </div>
+        </article>
+        <article class="item">
+          <div class="item__media"><img src="img/casquinha.jpg" alt="Casquinha de sorvete" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Casquinha Gourmet</h3><span class="item__price">R$ 12,00</span></div>
+            <p>Casquinha crocante com uma bola de sorvete e cobertura de chocolate.</p>
+            <button class="item__add" data-add data-name="Casquinha Gourmet" data-price="12">Adicionar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="cat-block" id="cat-milkshakes" data-block>
+      <div class="cat-block__head"><h2>Milkshakes</h2><span>cremosos e gelados</span></div>
+      <div class="grid">
+        <article class="item">
+          <div class="item__media"><img src="img/milkshake.jpg" alt="Milkshake de chocolate" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Milkshake de Chocolate</h3><span class="item__price">R$ 22,00</span></div>
+            <p>Muito cremoso, com calda de chocolate belga e chantilly.</p>
+            <button class="item__add" data-add data-name="Milkshake de Chocolate" data-price="22">Adicionar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="cat-block" id="cat-acai" data-block>
+      <div class="cat-block__head"><h2>Açaí</h2><span>montado na hora</span></div>
+      <div class="grid">
+        <article class="item">
+          <div class="item__media"><img src="img/acai.jpg" alt="Tigela de açaí com frutas" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Açaí 500ml</h3><span class="item__price">R$ 24,00</span></div>
+            <p>Açaí cremoso com granola, banana e leite condensado.</p>
+            <button class="item__add" data-add data-name="Açaí 500ml" data-price="24">Adicionar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="cat-block" id="cat-sobremesas" data-block>
+      <div class="cat-block__head"><h2>Sobremesas</h2><span>para compartilhar</span></div>
+      <div class="grid">
+        <article class="item">
+          <div class="item__media"><img src="img/banana-split.jpg" alt="Banana split" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Banana Split</h3><span class="item__price">R$ 26,00</span></div>
+            <p>Banana, três sabores de sorvete, caldas e castanhas.</p>
+            <button class="item__add" data-add data-name="Banana Split" data-price="26">Adicionar</button>
+          </div>
+        </article>
+        <article class="item">
+          <div class="item__media"><img src="img/sundae.jpg" alt="Sundae de morango" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Sundae de Morango</h3><span class="item__price">R$ 19,00</span></div>
+            <p>Sorvete de baunilha, morangos frescos e calda de morango.</p>
+            <button class="item__add" data-add data-name="Sundae de Morango" data-price="19">Adicionar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div><h4>Endereço</h4><p>Rua das Flores, 120 — Centro</p></div>
+        <div><h4>Horário</h4><p>Todos os dias · 12h às 23h</p></div>
+        <div><h4>Contato</h4><p>(00) 90000-0000</p></div>
+      </div>
+      <p class="footer__note">Cardápio demonstrativo com dados fictícios — projeto de portfólio.</p>
+    </div>
+  </footer>
+
+  <a class="wa" href="https://wa.me/5500900000000" target="_blank" rel="noopener">Falar no WhatsApp</a>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart" id="cart" aria-label="Sacola">
+    <div class="cart__head"><h3>Seu pedido</h3><button class="cart__close" data-close-cart aria-label="Fechar">×</button></div>
+    <div class="cart__list" id="cartList"></div>
+    <div class="cart__foot">
+      <div class="cart__total"><span>Total</span><span id="cartTotal">R$ 0,00</span></div>
+      <button class="cart__send" id="cartSend">Enviar pedido no WhatsApp</button>
+    </div>
+  </aside>
+
+  <script src="../menu.js"></script>
+</body>
+</html>
