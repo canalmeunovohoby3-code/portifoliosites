@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gelateria Dolce Neve | Cardápio Digital</title>
-<meta name="description" content="Cardápio digital da Gelateria Dolce Neve — sorvetes artesanais, milkshakes, açaí e sobremesas.">
+<meta name="description" content="Cardápio digital da Gelateria Dolce Neve — sorvetes artesanais, milkshakes, açaí, sobremesas e bebidas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
@@ -24,7 +24,7 @@
     <div class="wrap hero__body">
       <span class="hero__eyebrow">Sorveteria &amp; Açaí</span>
       <h1>Gelateria Dolce Neve</h1>
-      <p>Sorvetes artesanais, milkshakes cremosos e açaí montado na hora. Feito para adoçar o seu dia.</p>
+      <p>Sorvetes artesanais, milkshakes cremosos, açaí montado na hora e sobremesas para adoçar o seu dia.</p>
     </div>
   </section>
 
@@ -42,6 +42,7 @@
       <button class="chip" data-cat="cat-milkshakes">Milkshakes</button>
       <button class="chip" data-cat="cat-acai">Açaí</button>
       <button class="chip" data-cat="cat-sobremesas">Sobremesas</button>
+      <button class="chip" data-cat="cat-bebidas">Bebidas</button>
     </div>
   </nav>
 
@@ -65,6 +66,22 @@
             <button class="item__add" data-add data-name="Casquinha Gourmet" data-price="12">Adicionar</button>
           </div>
         </article>
+        <article class="item">
+          <div class="item__media"><img src="img/taca.jpg" alt="Taça de sorvete com calda" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Taça da Casa</h3><span class="item__price">R$ 29,00</span></div>
+            <p>Quatro sabores, caldas, chantilly e castanhas caramelizadas.</p>
+            <button class="item__add" data-add data-name="Taça da Casa" data-price="29">Adicionar</button>
+          </div>
+        </article>
+        <article class="item">
+          <div class="item__media"><img src="img/picole.jpg" alt="Picolé artesanal" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Picolé Artesanal</h3><span class="item__price">R$ 9,00</span></div>
+            <p>Picolé de fruta natural, feito com polpa de verdade.</p>
+            <button class="item__add" data-add data-name="Picolé Artesanal" data-price="9">Adicionar</button>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -79,6 +96,22 @@
             <button class="item__add" data-add data-name="Milkshake de Chocolate" data-price="22">Adicionar</button>
           </div>
         </article>
+        <article class="item">
+          <div class="item__media"><img src="img/milkshake-morango.jpg" alt="Milkshake de morango" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Milkshake de Morango</h3><span class="item__price">R$ 22,00</span></div>
+            <p>Morango batido na hora com sorvete de baunilha.</p>
+            <button class="item__add" data-add data-name="Milkshake de Morango" data-price="22">Adicionar</button>
+          </div>
+        </article>
+        <article class="item">
+          <div class="item__media"><img src="img/milkshake-ovomaltine.jpg" alt="Milkshake de Ovomaltine" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Milkshake de Ovomaltine</h3><span class="item__price">R$ 24,00</span></div>
+            <p>Com crocante de Ovomaltine e uma bola extra de sorvete.</p>
+            <button class="item__add" data-add data-name="Milkshake de Ovomaltine" data-price="24">Adicionar</button>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -86,11 +119,19 @@
       <div class="cat-block__head"><h2>Açaí</h2><span>montado na hora</span></div>
       <div class="grid">
         <article class="item">
-          <div class="item__media"><img src="img/acai.jpg" alt="Tigela de açaí com frutas" loading="lazy"></div>
+          <div class="item__media"><img src="img/acai.jpg" alt="Tigela de açaí 500ml com frutas" loading="lazy"></div>
           <div class="item__body">
             <div class="item__top"><h3>Açaí 500ml</h3><span class="item__price">R$ 24,00</span></div>
             <p>Açaí cremoso com granola, banana e leite condensado.</p>
             <button class="item__add" data-add data-name="Açaí 500ml" data-price="24">Adicionar</button>
+          </div>
+        </article>
+        <article class="item">
+          <div class="item__media"><img src="img/acai-300.jpg" alt="Tigela de açaí 300ml" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Açaí 300ml</h3><span class="item__price">R$ 16,00</span></div>
+            <p>Porção individual com dois complementos à sua escolha.</p>
+            <button class="item__add" data-add data-name="Açaí 300ml" data-price="16">Adicionar</button>
           </div>
         </article>
       </div>
@@ -113,6 +154,36 @@
             <div class="item__top"><h3>Sundae de Morango</h3><span class="item__price">R$ 19,00</span></div>
             <p>Sorvete de baunilha, morangos frescos e calda de morango.</p>
             <button class="item__add" data-add data-name="Sundae de Morango" data-price="19">Adicionar</button>
+          </div>
+        </article>
+        <article class="item">
+          <div class="item__media"><img src="img/brownie.jpg" alt="Brownie com sorvete" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Brownie com Sorvete</h3><span class="item__price">R$ 24,00</span></div>
+            <p>Brownie quentinho com bola de sorvete e calda de chocolate.</p>
+            <button class="item__add" data-add data-name="Brownie com Sorvete" data-price="24">Adicionar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="cat-block" id="cat-bebidas" data-block>
+      <div class="cat-block__head"><h2>Bebidas</h2><span>geladas</span></div>
+      <div class="grid">
+        <article class="item">
+          <div class="item__media"><img src="img/refrigerante.jpg" alt="Refrigerante em lata" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Refrigerante Lata</h3><span class="item__price">R$ 7,00</span></div>
+            <p>Coca-Cola, Guaraná ou Fanta, sempre gelados.</p>
+            <button class="item__add" data-add data-name="Refrigerante Lata" data-price="7">Adicionar</button>
+          </div>
+        </article>
+        <article class="item">
+          <div class="item__media"><img src="img/agua.jpg" alt="Água mineral" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Água Mineral</h3><span class="item__price">R$ 5,00</span></div>
+            <p>Água mineral sem gás, 500ml.</p>
+            <button class="item__add" data-add data-name="Água Mineral" data-price="5">Adicionar</button>
           </div>
         </article>
       </div>

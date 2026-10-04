@@ -15,7 +15,7 @@
  *  Os originais dos clientes NÃO são alterados.
  */
 import { spawnSync } from 'node:child_process'
-import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -300,6 +300,8 @@ function relativizeRootPaths(destDir) {
   for (const name of entries) {
     replacements.push({ from: `"/${name}`, to: `"./${name}` })
     replacements.push({ from: `'/${name}`, to: `'./${name}` })
+    // Template literals (acento grave) também são usados nos dados.
+    replacements.push({ from: '`/' + name, to: '`./' + name })
   }
   replaceInTree(destDir, replacements)
 }
@@ -350,6 +352,40 @@ function patchAlckalarPreview(destDir) {
     copyFileSync(src, dest)
   }
   replaceInTree(destDir, [{ from: ALCKALAR_HERO_FROM, to: ALCKALAR_HERO_TO }])
+}
+
+/**
+ * Ajustes exclusivos do preview do Dcribioshop.
+ *
+ * Além de relativizar os caminhos gravados no código, injetamos (só no preview)
+ * um pequeno script que converte em tempo real qualquer `src` de imagem que
+ * comece com "/" para "./" — necessário porque parte do catálogo vem do banco
+ * (Supabase) com caminho absoluto. O projeto original não é alterado.
+ */
+const DCRIBIO_FIX_SCRIPT =
+  "<script data-dcribio-imgfix>(function(){function f(r){var l=r.querySelectorAll?r.querySelectorAll('img'):[];for(var i=0;i<l.length;i++){var s=l[i].getAttribute('src');if(s&&s.charAt(0)==='/')l[i].setAttribute('src','.'+s);}}f(document);if(window.MutationObserver){var o=new MutationObserver(function(ms){for(var k=0;k<ms.length;k++){var a=ms[k].addedNodes;if(!a)continue;for(var i=0;i<a.length;i++){var n=a[i];if(n.nodeType!==1)continue;if(n.tagName==='IMG'){var s=n.getAttribute('src');if(s&&s.charAt(0)==='/')n.setAttribute('src','.'+s);}else f(n);}}});o.observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['src']});}})();</script>"
+
+function patchDcribioPreview(destDir) {
+  relativizeRootPaths(destDir)
+
+  // Corrige divergência de maiúscula/minúscula em um avatar de depoimento:
+  // o app referencia "avatar-marcos-CZPhBAfz.jpg", mas o build emitiu
+  // "...CZPhBAFz.jpg" — o que quebra em servidor case-sensitive. Só no preview.
+  const avFrom = path.join(destDir, 'assets', 'avatar-marcos-CZPhBAFz.jpg')
+  const avTo = path.join(destDir, 'assets', 'avatar-marcos-CZPhBAfz.jpg')
+  if (existsSync(avFrom) && avFrom !== avTo) {
+    const tmp = `${avFrom}.tmp`
+    renameSync(avFrom, tmp)
+    renameSync(tmp, avTo)
+  }
+
+  const indexPath = path.join(destDir, 'index.html')
+  if (!existsSync(indexPath)) return
+  let html = readFileSync(indexPath, 'utf8')
+  if (!html.includes('data-dcribio-imgfix') && html.includes('</body>')) {
+    html = html.replace('</body>', `${DCRIBIO_FIX_SCRIPT}</body>`)
+    writeFileSync(indexPath, html, 'utf8')
+  }
 }
 
 function buildViteProject(clientDir, tempOutDir, config) {
@@ -419,8 +455,8 @@ function main() {
         }
 
         if (project.id === 'dcribio') {
-          relativizeRootPaths(destDir)
-          console.log('[ok] caminhos do Dcribioshop convertidos para relativos (preview)')
+          patchDcribioPreview(destDir)
+          console.log('[ok] caminhos do Dcribioshop ajustados (preview)')
         }
 
         summary.push({ id: project.id, ok: true })

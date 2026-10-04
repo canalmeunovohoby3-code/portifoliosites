@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bistrô Aurora | Cardápio Digital</title>
-<meta name="description" content="Cardápio digital do Bistrô Aurora — entradas, pratos principais, massas e sobremesas.">
+<meta name="description" content="Cardápio digital do Bistrô Aurora — entradas, pratos principais, massas, sobremesas e bebidas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
@@ -42,6 +42,7 @@
       <button class="chip" data-cat="cat-principais">Pratos Principais</button>
       <button class="chip" data-cat="cat-massas">Massas</button>
       <button class="chip" data-cat="cat-sobremesas">Sobremesas</button>
+      <button class="chip" data-cat="cat-bebidas">Bebidas</button>
     </div>
   </nav>
 
@@ -55,6 +56,22 @@
             <div class="item__top"><h3>Bruschetta da Casa</h3><span class="item__price">R$ 29,00</span></div>
             <p>Pão artesanal tostado, tomate, manjericão fresco e azeite.</p>
             <button class="item__add" data-add data-name="Bruschetta da Casa" data-price="29">Adicionar</button>
+          </div>
+        </article>
+        <article class="item">
+          <div class="item__media"><img src="img/carpaccio.jpg" alt="Carpaccio de carne" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Carpaccio</h3><span class="item__price">R$ 42,00</span></div>
+            <p>Lâminas finas de carne, rúcula, parmesão e molho de alcaparras.</p>
+            <button class="item__add" data-add data-name="Carpaccio" data-price="42">Adicionar</button>
+          </div>
+        </article>
+        <article class="item">
+          <div class="item__media"><img src="img/burrata.jpg" alt="Burrata com tomate" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Burrata com Tomate</h3><span class="item__price">R$ 46,00</span></div>
+            <p>Burrata cremosa, tomates confitados, azeite e pão tostado.</p>
+            <button class="item__add" data-add data-name="Burrata com Tomate" data-price="46">Adicionar</button>
           </div>
         </article>
       </div>
@@ -87,6 +104,14 @@
             <button class="item__add" data-add data-name="Salmão Grelhado" data-price="74">Adicionar</button>
           </div>
         </article>
+        <article class="item">
+          <div class="item__media"><img src="img/frango.jpg" alt="Frango ao molho de ervas" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Frango ao Molho de Ervas</h3><span class="item__price">R$ 52,00</span></div>
+            <p>Peito de frango assado, molho de ervas e purê rústico.</p>
+            <button class="item__add" data-add data-name="Frango ao Molho de Ervas" data-price="52">Adicionar</button>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -101,6 +126,22 @@
             <button class="item__add" data-add data-name="Fettuccine Alfredo" data-price="49">Adicionar</button>
           </div>
         </article>
+        <article class="item">
+          <div class="item__media"><img src="img/nhoque.jpg" alt="Nhoque ao sugo" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Nhoque ao Sugo</h3><span class="item__price">R$ 47,00</span></div>
+            <p>Nhoque de batata com molho de tomate fresco e manjericão.</p>
+            <button class="item__add" data-add data-name="Nhoque ao Sugo" data-price="47">Adicionar</button>
+          </div>
+        </article>
+        <article class="item">
+          <div class="item__media"><img src="img/lasanha.jpg" alt="Lasanha da casa" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Lasanha da Casa</h3><span class="item__price">R$ 54,00</span></div>
+            <p>Camadas de massa, ragu de carne e molho branco gratinado.</p>
+            <button class="item__add" data-add data-name="Lasanha da Casa" data-price="54">Adicionar</button>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -113,6 +154,36 @@
             <div class="item__top"><h3>Petit Gâteau</h3><span class="item__price">R$ 26,00</span></div>
             <p>Bolo quente de chocolate com recheio cremoso e sorvete.</p>
             <button class="item__add" data-add data-name="Petit Gâteau" data-price="26">Adicionar</button>
+          </div>
+        </article>
+        <article class="item">
+          <div class="item__media"><img src="img/tiramisu.jpg" alt="Tiramisù" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Tiramisù</h3><span class="item__price">R$ 24,00</span></div>
+            <p>Clássico italiano com café, mascarpone e cacau.</p>
+            <button class="item__add" data-add data-name="Tiramisù" data-price="24">Adicionar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="cat-block" id="cat-bebidas" data-block>
+      <div class="cat-block__head"><h2>Bebidas</h2><span>para acompanhar</span></div>
+      <div class="grid">
+        <article class="item">
+          <div class="item__media"><img src="img/vinho.jpg" alt="Taça de vinho tinto" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Taça de Vinho</h3><span class="item__price">R$ 28,00</span></div>
+            <p>Seleção de vinhos tintos e brancos da casa.</p>
+            <button class="item__add" data-add data-name="Taça de Vinho" data-price="28">Adicionar</button>
+          </div>
+        </article>
+        <article class="item">
+          <div class="item__media"><img src="img/suco.jpg" alt="Suco natural" loading="lazy"></div>
+          <div class="item__body">
+            <div class="item__top"><h3>Suco Natural</h3><span class="item__price">R$ 14,00</span></div>
+            <p>Laranja, limão ou maracujá, feito na hora.</p>
+            <button class="item__add" data-add data-name="Suco Natural" data-price="14">Adicionar</button>
           </div>
         </article>
       </div>
