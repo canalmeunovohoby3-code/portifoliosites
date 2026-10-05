@@ -40,7 +40,7 @@ export function HeroVideo() {
   }
 
   return (
-    <div className="relative mx-auto w-full max-w-[560px]">
+    <div className="relative mx-auto w-full max-w-[560px] lg:max-w-none">
       {/* Brilho de fundo discreto */}
       <div
         className="pointer-events-none absolute -top-6 right-0 h-64 w-64 rounded-full bg-accent-200/55 blur-3xl"
@@ -60,6 +60,8 @@ export function HeroVideo() {
           playsInline
           muted={muted}
           preload="metadata"
+          controls
+          controlsList="nodownload"
           className="aspect-video h-full w-full object-cover"
         />
 
@@ -68,7 +70,7 @@ export function HeroVideo() {
           onClick={toggleSound}
           aria-label={muted ? 'Ativar som do vídeo' : 'Desativar som do vídeo'}
           className={cn(
-            'absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full px-3.5 py-2.5 text-xs font-semibold shadow-card transition-all duration-300 ease-smooth hover:-translate-y-0.5',
+            'absolute right-4 top-4 inline-flex items-center gap-2 rounded-full px-3.5 py-2.5 text-xs font-semibold shadow-card transition-all duration-300 ease-smooth hover:-translate-y-0.5',
             muted ? 'bg-accent-500 text-white' : 'bg-white/90 text-ink-900 backdrop-blur',
           )}
         >

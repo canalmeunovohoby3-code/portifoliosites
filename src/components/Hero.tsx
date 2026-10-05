@@ -31,8 +31,8 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <div className="shell-wide relative">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+      <div className="shell-wide relative xl:max-w-[1620px]">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 xl:grid-cols-[minmax(0,660px)_minmax(0,1fr)]">
           {/* Coluna de texto */}
           <div className="reveal is-visible max-w-xl">
             <span className="inline-flex animate-fade-up items-center gap-2 rounded-full border border-ink-100 bg-white/80 px-3.5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-ink-500">

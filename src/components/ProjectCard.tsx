@@ -51,7 +51,7 @@ export function ProjectCard({ project, onOpen, index = 0, revealOnScroll = true 
 
   return (
     <article
-      className={cn('group relative flex h-full flex-col', revealOnScroll && 'reveal')}
+      className={cn('group relative flex h-full w-full min-w-0 flex-col', revealOnScroll && 'reveal')}
       style={revealOnScroll ? { transitionDelay: `${Math.min(index, 6) * 60}ms` } : undefined}
     >
       <div
