@@ -6,74 +6,57 @@ import { cn } from '../lib/cn'
  * Vídeo do hero.
  *
  * O navegador bloqueia áudio automático na primeira visita. Então:
- * - tenta iniciar JÁ COM SOM (funciona para quem o navegador já liberou);
- * - se for bloqueado, o vídeo toca mudo e mostramos uma tela de entrada:
- *   "Entrar com som" (um toque) faz o vídeo começar COM ÁUDIO; "Entrar sem som"
- *   mantém mudo. A pessoa pode desativar o som a qualquer momento.
+ * - tenta iniciar JÁ COM SOM (funciona quando o navegador já liberou);
+ * - se for bloqueado, toca mudo automaticamente e o som liga sozinho no
+ *   primeiro toque/clique/tecla em qualquer lugar da página.
+ * A pessoa pode desativar o som a qualquer momento (botão ou controles).
  */
 export function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const entryRef = useRef<HTMLDivElement>(null)
   const [muted, setMuted] = useState(true)
-  const [showEntry, setShowEntry] = useState(false)
 
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
 
+    const activationEvents: Array<keyof WindowEventMap> = [
+      'pointerdown',
+      'mousedown',
+      'touchstart',
+      'keydown',
+      'click',
+    ]
+
+    const enableSound = () => {
+      video.muted = false
+      setMuted(false)
+      video.play().catch(() => {})
+      cleanup()
+    }
+
+    const cleanup = () => {
+      activationEvents.forEach((event) =>
+        window.removeEventListener(event, enableSound, true),
+      )
+    }
+
+    // 1) Tenta reproduzir JÁ COM ÁUDIO.
     video.muted = false
     const attempt = video.play()
     if (attempt && typeof attempt.catch === 'function') {
       attempt.catch(() => {
-        // Bloqueado sem interação: toca mudo e mostra a tela de entrada.
+        // 2) Bloqueado: toca mudo e liga o som no primeiro gesto do usuário.
         video.muted = true
         setMuted(true)
         video.play().catch(() => {})
-        setShowEntry(true)
+        activationEvents.forEach((event) =>
+          window.addEventListener(event, enableSound, { capture: true, once: true, passive: true }),
+        )
       })
     }
+
+    return cleanup
   }, [])
-
-  // Enquanto a tela de entrada está visível, o primeiro toque/clique/tecla em
-  // QUALQUER lugar da página já liga o som e começa o vídeo com áudio.
-  useEffect(() => {
-    if (!showEntry) return
-    const events: Array<keyof WindowEventMap> = ['pointerdown', 'mousedown', 'touchstart', 'keydown', 'click']
-
-    const handler = (event: Event) => {
-      const target = event.target
-      if (entryRef.current && target instanceof Node && entryRef.current.contains(target)) return
-      const video = videoRef.current
-      if (!video) return
-      video.currentTime = 0
-      video.muted = false
-      setMuted(false)
-      setShowEntry(false)
-      video.play().catch(() => {})
-    }
-
-    events.forEach((name) => window.addEventListener(name, handler, true))
-    return () => events.forEach((name) => window.removeEventListener(name, handler, true))
-  }, [showEntry])
-
-  const enterWithSound = () => {
-    const video = videoRef.current
-    if (!video) return
-    video.currentTime = 0
-    video.muted = false
-    setMuted(false)
-    setShowEntry(false)
-    video.play().catch(() => {})
-  }
-
-  const enterMuted = () => {
-    const video = videoRef.current
-    if (!video) return
-    video.muted = true
-    setMuted(true)
-    setShowEntry(false)
-    video.play().catch(() => {})
-  }
 
   const toggleSound = () => {
     const video = videoRef.current
@@ -122,36 +105,6 @@ export function HeroVideo() {
           {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
           {muted ? 'Ativar som' : 'Som ligado'}
         </button>
-
-        {/* Tela de entrada (somente quando o navegador bloqueia o áudio) */}
-        {showEntry && (
-          <div
-            ref={entryRef}
-            className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-ink-900/72 px-6 text-center backdrop-blur-sm"
-          >
-            <p className="font-display text-[1.05rem] font-bold text-white">Veja com som</p>
-            <p className="max-w-xs text-[0.82rem] leading-relaxed text-white/70">
-              Este vídeo mostra o processo de criação dos sites. Entre com o som para ver a experiência completa.
-            </p>
-            <div className="mt-1 flex flex-wrap items-center justify-center gap-2.5">
-              <button
-                type="button"
-                onClick={enterWithSound}
-                className="inline-flex items-center gap-2 rounded-full bg-accent-500 px-4 py-2.5 text-[0.82rem] font-semibold text-white shadow-accent transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-600"
-              >
-                <Volume2 className="h-4 w-4" />
-                Entrar com som
-              </button>
-              <button
-                type="button"
-                onClick={enterMuted}
-                className="inline-flex items-center gap-2 rounded-full border border-white/35 px-4 py-2.5 text-[0.82rem] font-semibold text-white transition-all duration-300 ease-smooth hover:border-white hover:bg-white/10"
-              >
-                Entrar sem som
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   )
