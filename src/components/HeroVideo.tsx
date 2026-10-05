@@ -5,58 +5,52 @@ import { cn } from '../lib/cn'
 /**
  * Vídeo do hero.
  *
- * Autoplay: o navegador só permite reprodução automática COM som depois de uma
- * interação do usuário. Então o componente tenta iniciar com som; se for
- * bloqueado, começa mudo (para tocar automaticamente) e mostra o botão
- * "Ativar som". Assim ele nunca fica parado.
+ * O navegador bloqueia áudio automático na primeira visita. Então:
+ * - tenta iniciar JÁ COM SOM (funciona para quem o navegador já liberou);
+ * - se for bloqueado, o vídeo toca mudo e mostramos uma tela de entrada:
+ *   "Entrar com som" (um toque) faz o vídeo começar COM ÁUDIO; "Entrar sem som"
+ *   mantém mudo. A pessoa pode desativar o som a qualquer momento.
  */
 export function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [muted, setMuted] = useState(true)
+  const [showEntry, setShowEntry] = useState(false)
 
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
 
-    // Gestos que o navegador aceita como "interação do usuário" (liberam o áudio).
-    const activationEvents: Array<keyof WindowEventMap> = [
-      'pointerdown',
-      'mousedown',
-      'touchstart',
-      'keydown',
-      'click',
-    ]
-
-    const enableSound = () => {
-      video.muted = false
-      setMuted(false)
-      video.play().catch(() => {})
-      cleanup()
-    }
-
-    const cleanup = () => {
-      activationEvents.forEach((event) =>
-        window.removeEventListener(event, enableSound, true),
-      )
-    }
-
-    // 1) Tenta reproduzir JÁ COM ÁUDIO.
     video.muted = false
     const attempt = video.play()
     if (attempt && typeof attempt.catch === 'function') {
       attempt.catch(() => {
-        // 2) Bloqueado: toca mudo e liga o som sozinho no primeiro gesto.
+        // Bloqueado sem interação: toca mudo e mostra a tela de entrada.
         video.muted = true
         setMuted(true)
         video.play().catch(() => {})
-        activationEvents.forEach((event) =>
-          window.addEventListener(event, enableSound, { capture: true, once: true, passive: true }),
-        )
+        setShowEntry(true)
       })
     }
-
-    return cleanup
   }, [])
+
+  const enterWithSound = () => {
+    const video = videoRef.current
+    if (!video) return
+    video.currentTime = 0
+    video.muted = false
+    setMuted(false)
+    setShowEntry(false)
+    video.play().catch(() => {})
+  }
+
+  const enterMuted = () => {
+    const video = videoRef.current
+    if (!video) return
+    video.muted = true
+    setMuted(true)
+    setShowEntry(false)
+    video.play().catch(() => {})
+  }
 
   const toggleSound = () => {
     const video = videoRef.current
@@ -98,13 +92,40 @@ export function HeroVideo() {
           onClick={toggleSound}
           aria-label={muted ? 'Ativar som do vídeo' : 'Desativar som do vídeo'}
           className={cn(
-            'absolute right-4 top-4 inline-flex items-center gap-2 rounded-full px-3.5 py-2.5 text-xs font-semibold shadow-card transition-all duration-300 ease-smooth hover:-translate-y-0.5',
+            'absolute right-4 top-4 z-20 inline-flex items-center gap-2 rounded-full px-3.5 py-2.5 text-xs font-semibold shadow-card transition-all duration-300 ease-smooth hover:-translate-y-0.5',
             muted ? 'bg-accent-500 text-white' : 'bg-white/90 text-ink-900 backdrop-blur',
           )}
         >
           {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
           {muted ? 'Ativar som' : 'Som ligado'}
         </button>
+
+        {/* Tela de entrada (somente quando o navegador bloqueia o áudio) */}
+        {showEntry && (
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-ink-900/72 px-6 text-center backdrop-blur-sm">
+            <p className="font-display text-[1.05rem] font-bold text-white">Veja com som</p>
+            <p className="max-w-xs text-[0.82rem] leading-relaxed text-white/70">
+              Este vídeo mostra o processo de criação dos sites. Entre com o som para ver a experiência completa.
+            </p>
+            <div className="mt-1 flex flex-wrap items-center justify-center gap-2.5">
+              <button
+                type="button"
+                onClick={enterWithSound}
+                className="inline-flex items-center gap-2 rounded-full bg-accent-500 px-4 py-2.5 text-[0.82rem] font-semibold text-white shadow-accent transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-accent-600"
+              >
+                <Volume2 className="h-4 w-4" />
+                Entrar com som
+              </button>
+              <button
+                type="button"
+                onClick={enterMuted}
+                className="inline-flex items-center gap-2 rounded-full border border-white/35 px-4 py-2.5 text-[0.82rem] font-semibold text-white transition-all duration-300 ease-smooth hover:border-white hover:bg-white/10"
+              >
+                Entrar sem som
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
