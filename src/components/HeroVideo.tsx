@@ -18,16 +18,44 @@ export function HeroVideo() {
     const video = videoRef.current
     if (!video) return
 
+    // Gestos que o navegador aceita como "interação do usuário" (liberam o áudio).
+    const activationEvents: Array<keyof WindowEventMap> = [
+      'pointerdown',
+      'mousedown',
+      'touchstart',
+      'keydown',
+      'click',
+    ]
+
+    const enableSound = () => {
+      video.muted = false
+      setMuted(false)
+      video.play().catch(() => {})
+      cleanup()
+    }
+
+    const cleanup = () => {
+      activationEvents.forEach((event) =>
+        window.removeEventListener(event, enableSound, true),
+      )
+    }
+
+    // 1) Tenta reproduzir JÁ COM ÁUDIO.
     video.muted = false
     const attempt = video.play()
     if (attempt && typeof attempt.catch === 'function') {
       attempt.catch(() => {
-        // Bloqueado sem interação: reproduz mudo automaticamente.
+        // 2) Bloqueado: toca mudo e liga o som sozinho no primeiro gesto.
         video.muted = true
         setMuted(true)
         video.play().catch(() => {})
+        activationEvents.forEach((event) =>
+          window.addEventListener(event, enableSound, { capture: true, once: true, passive: true }),
+        )
       })
     }
+
+    return cleanup
   }, [])
 
   const toggleSound = () => {
