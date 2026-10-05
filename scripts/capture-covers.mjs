@@ -44,6 +44,7 @@ const covers = [
   { id: 'gracindo', path: 'projects/gracindo/index.html' },
   { id: 'alckalar', path: 'projects/alckalar/index.html' },
   { id: 'dcribio', path: 'projects/dcribio/index.html', waitMs: 8000 },
+  { id: 'despachante', path: 'projects/despachante/index.html', waitMs: 2500 },
   { id: 'sorveteria', path: 'menus/sorveteria/index.html', waitMs: 1500 },
   { id: 'restaurante', path: 'menus/restaurante/index.html', waitMs: 1500 },
   { id: 'orvix', path: 'projects/orvix/landing.html' },

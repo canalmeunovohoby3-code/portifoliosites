@@ -147,6 +147,20 @@ export const projects: Project[] = [
     highlights: ['Catálogo de produtos', 'Orçamento personalizado', 'Contato pelo WhatsApp'],
   },
   {
+    id: 'despachante',
+    name: 'Chico Despachante',
+    category: 'Comércio/Serviços',
+    description:
+      'Site institucional para despachante de trânsito, com serviços, o passo a passo do atendimento e contato direto pelo WhatsApp.',
+    segment: 'Despachante de trânsito',
+    location: 'Teixeira de Freitas — BA',
+    previewUrl: 'projects/despachante/index.html',
+    iframeEnabled: true,
+    coverImage: 'covers/despachante.jpg',
+    technologies: ['React', 'TypeScript'],
+    highlights: ['Serviços e documentos', 'Atendimento passo a passo', 'Contato pelo WhatsApp'],
+  },
+  {
     id: 'fibra-net',
     name: 'Fibra Net',
     category: 'Outros',

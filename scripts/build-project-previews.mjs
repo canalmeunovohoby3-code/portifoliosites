@@ -40,6 +40,7 @@ const projects = [
     dir: 'CLIENTE 3742 DCRIBIO',
     config: path.join(__dirname, 'dcribio', 'vite.config.mjs'),
   },
+  { id: 'despachante', mode: 'vite', dir: 'CLIENTE 3743 DESPACHANTE CHICO' },
   {
     // Alcka-Lar: site estático. O hero.png (16,8 MB) não é usado — fica de fora.
     id: 'alckalar',
@@ -457,6 +458,11 @@ function main() {
         if (project.id === 'dcribio') {
           patchDcribioPreview(destDir)
           console.log('[ok] caminhos do Dcribioshop ajustados (preview)')
+        }
+
+        if (project.id === 'despachante') {
+          relativizeRootPaths(destDir)
+          console.log('[ok] caminhos do Despachante convertidos para relativos (preview)')
         }
 
         summary.push({ id: project.id, ok: true })
