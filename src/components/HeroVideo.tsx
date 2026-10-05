@@ -13,6 +13,7 @@ import { cn } from '../lib/cn'
  */
 export function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const entryRef = useRef<HTMLDivElement>(null)
   const [muted, setMuted] = useState(true)
   const [showEntry, setShowEntry] = useState(false)
 
@@ -32,6 +33,28 @@ export function HeroVideo() {
       })
     }
   }, [])
+
+  // Enquanto a tela de entrada está visível, o primeiro toque/clique/tecla em
+  // QUALQUER lugar da página já liga o som e começa o vídeo com áudio.
+  useEffect(() => {
+    if (!showEntry) return
+    const events: Array<keyof WindowEventMap> = ['pointerdown', 'mousedown', 'touchstart', 'keydown', 'click']
+
+    const handler = (event: Event) => {
+      const target = event.target
+      if (entryRef.current && target instanceof Node && entryRef.current.contains(target)) return
+      const video = videoRef.current
+      if (!video) return
+      video.currentTime = 0
+      video.muted = false
+      setMuted(false)
+      setShowEntry(false)
+      video.play().catch(() => {})
+    }
+
+    events.forEach((name) => window.addEventListener(name, handler, true))
+    return () => events.forEach((name) => window.removeEventListener(name, handler, true))
+  }, [showEntry])
 
   const enterWithSound = () => {
     const video = videoRef.current
@@ -102,7 +125,10 @@ export function HeroVideo() {
 
         {/* Tela de entrada (somente quando o navegador bloqueia o áudio) */}
         {showEntry && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-ink-900/72 px-6 text-center backdrop-blur-sm">
+          <div
+            ref={entryRef}
+            className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-ink-900/72 px-6 text-center backdrop-blur-sm"
+          >
             <p className="font-display text-[1.05rem] font-bold text-white">Veja com som</p>
             <p className="max-w-xs text-[0.82rem] leading-relaxed text-white/70">
               Este vídeo mostra o processo de criação dos sites. Entre com o som para ver a experiência completa.
