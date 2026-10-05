@@ -3,7 +3,7 @@ import { hero } from '../data/content'
 import { siteConfig } from '../data/siteConfig'
 import { track } from '../lib/analytics'
 import { openWhatsApp, whatsappUrl } from '../lib/whatsapp'
-import { HeroShowcase } from './HeroShowcase'
+import { HeroVideo } from './HeroVideo'
 import { CTAButton } from './ui/CTAButton'
 import { TypedHeadline } from './ui/TypedHeadline'
 
@@ -89,7 +89,7 @@ export function Hero() {
 
           {/* Coluna visual */}
           <div className="reveal is-visible lg:pl-4" style={{ transitionDelay: '0.1s' }}>
-            <HeroShowcase />
+            <HeroVideo />
           </div>
         </div>
       </div>

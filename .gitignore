@@ -13,6 +13,9 @@ dist-ssr
 # public/projects
 # public/covers
 
+# Vídeos originais (pesados) — a versão web fica em public/videohero.mp4
+_originais/
+
 # Sistema / editor
 .DS_Store
 Thumbs.db
