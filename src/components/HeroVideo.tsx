@@ -82,7 +82,7 @@ export function HeroVideo() {
       <div className="relative overflow-hidden rounded-2xl border border-ink-100 bg-ink-900 shadow-frame">
         <video
           ref={videoRef}
-          src="videohero.mp4"
+          src="videohero-v3.mp4"
           autoPlay
           loop
           playsInline
