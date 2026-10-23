@@ -13,6 +13,7 @@ import { previewSection } from '../data/content'
 import { useScrollLock } from '../hooks/useScrollLock'
 import { track } from '../lib/analytics'
 import { cn } from '../lib/cn'
+import { installWhatsAppTracking } from '../lib/iframeWhatsApp'
 import { openWhatsApp, projectWhatsappUrl } from '../lib/whatsapp'
 import { CTAButton } from './ui/CTAButton'
 
@@ -32,6 +33,7 @@ interface ProjectPreviewProps {
 export function ProjectPreview({ project, onClose }: ProjectPreviewProps) {
   const frameRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
   const openedAtRef = useRef<number>(0)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [iframeLoaded, setIframeLoaded] = useState(false)
@@ -181,9 +183,14 @@ export function ProjectPreview({ project, onClose }: ProjectPreviewProps) {
                 </div>
               )}
               <iframe
+                ref={iframeRef}
                 src={project.previewUrl}
                 title={`Site ${project.name}`}
-                onLoad={() => setIframeLoaded(true)}
+                onLoad={() => {
+                  setIframeLoaded(true)
+                  // Rastreia WhatsApp DENTRO do preview, sem alterar o site.
+                  installWhatsAppTracking(iframeRef.current)
+                }}
                 loading="lazy"
                 referrerPolicy="no-referrer"
                 sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads"
