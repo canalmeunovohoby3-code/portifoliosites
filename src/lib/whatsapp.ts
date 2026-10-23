@@ -17,7 +17,14 @@ export function projectWhatsappUrl(project: Project): string {
   return whatsappUrl(projectWhatsappMessage(project))
 }
 
+/** Dispara o Lead do TikTok (se o pixel estiver carregado). */
+export function trackTikTokLead(): void {
+  window.ttq?.track('Lead', { content_name: 'Contato WhatsApp' })
+}
+
 /** Abre o WhatsApp em nova aba sem prejudicar a posição atual do visitante. */
 export function openWhatsApp(url: string): void {
+  // Rastreia antes de abrir; não bloqueia nem interrompe a navegação.
+  trackTikTokLead()
   window.open(url, '_blank', 'noopener,noreferrer')
 }

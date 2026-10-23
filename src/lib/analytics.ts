@@ -30,6 +30,10 @@ declare global {
     dataLayer?: unknown[]
     fbq?: (...args: unknown[]) => void
     gtag?: (...args: unknown[]) => void
+    ttq?: {
+      track: (event: string, data?: Record<string, unknown>) => void
+      [key: string]: unknown
+    }
   }
 }
 
